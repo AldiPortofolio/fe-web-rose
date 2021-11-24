@@ -1,0 +1,138 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Detail</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <table class="table table-sm table-striped">
+    <tr>
+      <th style="width: 30%">
+        <span class="badge badge-pill badge-primary">{{customer.id}}</span>
+      </th>
+      <th style="width:70%">
+        <button type="button" class="btn btn-outline-primary" style="color:green">
+          Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+          <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+        </button>
+      </th>
+    </tr>
+    <tr>
+      <td>Service ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.serviceId" disabled/></td>
+    </tr>
+    <tr>
+      <td>Service Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.serviceName" disabled/></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.name" disabled/></td>
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.phone" disabled/></td>
+    </tr>
+    <tr>
+      <td>Type ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.typeId" disabled/></td>
+    </tr>
+    <tr>
+      <td>Type Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.typeName" disabled/></td>
+    </tr>
+    <tr>
+      <td>Citizen ID No</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.citizenIdNo" disabled/></td>
+    </tr>
+    <tr>
+      <td>Merchant</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.merchant" disabled/></td>
+    </tr>
+    <tr>
+      <td>Place of birth</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.pob" disabled/></td>
+    </tr>
+    <tr>
+      <td>Date of birth</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.dob" disabled/></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.gender" disabled/></td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td><textarea cols="60" rows="4" style="width:99%" [(ngModel)]="customer.address" disabled></textarea></td>
+    </tr>
+    <tr>
+      <td>Postal Code</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.postalCode" disabled/></td>
+    </tr>
+    <tr>
+      <td>Province ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.provinceId" disabled/></td>
+    </tr>
+    <tr>
+      <td>Province Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.provinceName" disabled/></td>
+    </tr>
+    <tr>
+      <td>City ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.cityId" disabled/></td>
+    </tr>
+    <tr>
+      <td>City Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.cityName" disabled/></td>
+    </tr>
+    <tr>
+      <td>District ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.districtId" disabled/></td>
+    </tr>
+    <tr>
+      <td>District Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.districtName" disabled/></td>
+    </tr>
+    <tr>
+      <td>Village ID</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.villageId" disabled/></td>
+    </tr>
+    <tr>
+      <td>Village Name</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.villageName" disabled/></td>
+    </tr>
+    <tr>
+      <td>RW</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.rw" disabled/></td>
+    </tr>
+    <tr>
+      <td>RT</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.rt" disabled/></td>
+    </tr>
+    <tr>
+      <td>Occupation</td>
+      <td><input type="text" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.occupation" disabled/></td>
+    </tr>
+    <tr>
+      <td>longitude</td>
+      <td><input type="number" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.longitude" disabled/></td>
+    </tr>
+    <tr>
+      <td>latitude</td>
+      <td><input type="number" size="60%" maxlength="250" style="width:99%" [(ngModel)]="customer.latitude" disabled/></td>
+    </tr>
+    <!-- <tr>
+      <td>updatedAt</td>
+      <td><input type="text" size="60%" maxlength="250" [(ngModel)]="customer.updatedAt" /></td>
+    </tr> -->
+  </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <!-- <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+      <i class="fa fa-save fa-lg"></i>
+    </button> -->
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

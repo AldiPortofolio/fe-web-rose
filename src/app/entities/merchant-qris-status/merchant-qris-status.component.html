@@ -1,0 +1,83 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Merchant Qris Status</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="midInput">Mid</label>
+                        <input type="text" class="form-control" id="midInput" [(ngModel)]='searchTerm.mid'
+                            name="serarchMid" placeholder="Enter Mid">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="agentIdInput">Agent ID</label>
+                        <input type="text" class="form-control" id="agentIdInput" [(ngModel)]='searchTerm.agentId' name="searchAgentId"
+                            placeholder="Enter Agent ID">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="midInput">Status</label>
+                        <select class="form-control" name="filter" [(ngModel)]="searchTerm.status">
+                            <option value="">-All-</option>
+                            <option *ngFor="let status of listStatus" [value]="status.value">
+                                {{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="midInput">Request Date</label>
+                        <div class="input-group">
+                            <button (click)="d.toggle()">
+                                <i class="fa fa-calendar fa-lg"></i>
+                            </button>
+                            <input readOnly type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="requestDate" [ngModelOptions]="{standalone: true}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="midInput">Install Date</label>
+                        <div class="input-group">
+                            <button (click)="d.toggle()">
+                                <i class="fa fa-calendar fa-lg"></i>
+                            </button>
+                            <input readOnly type="text" class="form-control" ngbDatepicker #d="ngbDatepicker" [(ngModel)]="installDate"
+                                [ngModelOptions]="{standalone: true}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="submit" (click)="onFilter()" class="btn mr-2 btn-outline-success btn-sm">Search <i
+                            class="fa fa-search fa-lg"></i></button>
+                    <button type="button" (click)="resetFilter()" class="btn btn-outline-danger btn-sm">Reset <i class="fa fa-refresh fa-lg"></i></button>
+                </div>
+            </form>
+        </div>
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Merchant ID</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Agent ID</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col">Install Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let merchantQrisStatus of merchantQrisStatusList">
+                        <td>{{merchantQrisStatus.mid}}</td>
+                        <td>{{merchantQrisStatus.qrisStatusDesc}}</td>
+                        <td>{{merchantQrisStatus.agentId}}</td>
+                        <td>{{merchantQrisStatus.qrisRequestDate | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{merchantQrisStatus.qrisInstallDate | date: 'dd-MM-yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

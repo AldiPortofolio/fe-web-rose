@@ -1,0 +1,44 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">List Merchant {{nameAggregator}}</h5>
+        <div>
+            <form>
+                <div class="btn-group" role="group">
+                    <button type="button" (click)="onBack()" class="btn btn-outline-dark btn-sm">
+                        <i class="fa fa-chevron-left fa-lg"></i> Back
+                    </button>
+                    <button type="submit" (click)="approve()" class="btn mr-2 btn-outline-success btn-sm">Confirm <i
+                            class="fa fa-save fa-lg"></i></button>
+                </div>
+            </form>
+        </div>
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Merchant Name</th>
+                        <th scope="col">Merchant MPAN</th>
+                        <th scope="col">Merchant MID</th>
+                        <th scope="col">Merchant NMID</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let merchant of merchantList">
+                        <td>{{merchant.storeName}}</td>
+                        <td>{{merchant.merchantPan}}</td>
+                        <td>{{merchant.merchantOutletId}}</td>
+                        <td>{{merchant.nMid}}</td>
+                        <td>{{merchant.actionType==0? 'Tambah' : 'Hapus'}}</td>
+                        <td>{{merchant.status==1 ?'Approve' : 'Need Approve'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+
+    </div>
+</div>

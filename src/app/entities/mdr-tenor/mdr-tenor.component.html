@@ -1,0 +1,63 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Mdr Tenor</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="form-group"></div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="tenorNameInput">Tenor Name</label>
+                        <input type="text" class="form-control" id="tenorName" [(ngModel)]='searchTerm.tenorName'
+                            name="searchTenorName" placeholder="Enter Tenor Name">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="tenorCodeInput">Tenor Code</label>
+                        <input type="text" class="form-control" id="tenorCode" [(ngModel)]='searchTerm.tenorCode'
+                            name="searchTenorCode" placeholder="Enter Tenor Code">
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="submit" (click)="onFilter()" class="btn mr-2 btn-outline-success btn-sm">Search <i
+                            class="fa fa-search fa-lg"></i></button>
+                    <button type="button" (click)="resetFilter()" class="btn btn-outline-danger btn-sm">Reset <i
+                            class="fa fa-refresh fa-lg"></i></button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Add
+                        <i class="fa fa-plus-circle fa-lg"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Tenor Name</th>
+                        <th scope="col">Tenor Code</th>
+                        <th scope="col">Doku Tenor Code</th>
+                        <th scope="col">Sequence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mdrTenor of mdrTenorList">
+                        <td><button type="button" (click)="open('edit', mdrTenor)"
+                                class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                            <button type="button" (click)="delete(mdrTenor)" class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button></td>
+                        <td>{{mdrTenor.tenorName}}</td>
+                        <td>{{mdrTenor.tenorCode}}</td>
+                        <td>{{mdrTenor.dokuTenorCode}}</td>
+                        <td>{{mdrTenor.seq}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+            (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

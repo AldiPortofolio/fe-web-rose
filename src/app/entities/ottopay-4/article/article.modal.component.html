@@ -1,0 +1,35 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <span class="badge badge-pill badge-primary mr-3" >01</span>
+    <button type="button" class="btn btn-outline-primary" style="color:green">
+      Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+      <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+    </button>
+  </div>
+  <div>
+    <ckeditor 
+      [(ngModel)]="mycontent" 
+      #myckeditor="ngModel" 
+      name="myckeditor" 
+      required 
+      [config]="ckeConfig" 
+      debounce="300">
+    </ckeditor>
+    <div *ngIf="myckeditor.invalid && myckeditor.touched" class="help-block" style="color:red">Required field.</div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

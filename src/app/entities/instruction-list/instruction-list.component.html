@@ -1,0 +1,59 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Instruction List</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label>Title</label>
+            <input type="text" class="form-control" (ngModel)='searchTerm.title' name="searchTitle"
+              placeholder="Enter name">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+
+    <div style=" padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Description</th>
+            <th scope="col">Sequence</th>
+            <th scope="col">action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let instruction of instructionList">
+            <td>{{instruction.id}}</td>
+            <td>{{instruction.title}}</td>
+            <td><a href={{instruction.logo}} target="_blank">{{instruction.logo}}</a></td>
+            <td>
+              <textarea [disabled]="true" name="" id="" cols="50" rows="5">{{instruction.description}}</textarea>
+            </td>
+            <td>{{instruction.sequence}}</td>
+            <td>
+              <button type="button" (click)="open('edit', instruction)" class="btn btn-outline-success btn-sm" style="margin-right: 3px;">
+                <i class="fa fa-list"></i>
+              </button>
+              <button type="button" (click)="remove(instruction)" class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-trash fa-sm"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

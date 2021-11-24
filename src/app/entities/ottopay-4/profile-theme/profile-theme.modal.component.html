@@ -1,0 +1,116 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <table class="table table-sm table-striped">
+    <tr>
+      <th style="width: 30%">
+        <span class="badge badge-pill badge-primary">{{profileTheme.id}}</span>
+      </th>
+      <th style="width:70%">
+        <button type="button" class="btn btn-outline-primary" style="color:green">
+          Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+          <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+        </button>
+      </th>
+    </tr>
+    <tr>
+      <td>User Category Name</td>
+      <!-- <td><input type="number" size="60%" maxlength="250" [(ngModel)]="profileTheme.userCategoryId" /></td> -->
+      <td>
+        <select [(ngModel)]="profileTheme.userCategoryId" class="form-control" style="width:70%">
+          <option value="0">- Pilih -</option>
+          <option *ngFor="let category of listUserCategory" [value]="category.id"
+            [selected]="category.id == profileTheme.userCategoryId">{{category.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <!-- <tr>
+      <td>Level Merchant ID</td>
+      <td><input type="number" size="60%" maxlength="250" [(ngModel)]="profileTheme.levelMerchantId" /></td>
+    </tr> -->
+    <tr>
+      <td>Level Merchant</td>
+      <td>
+        <select [(ngModel)]="profileTheme.levelMerchantId" class="form-control" style="width:70%">
+          <option value="0">- Pilih -</option>
+          <option *ngFor="let merchant of listLevelMerchant" [value]="merchant.id"
+            [selected]="merchant.id == profileTheme.levelMerchantId">{{merchant.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Theme Color</td>
+      <td>
+        <input type="text" #ignoredInput size="40%" maxlength="250" [cpFallbackColor]="'#f200bd'"
+          [cpIgnoredElements]="[ignoredButton, ignoredInput]" [(cpToggle)]="toggle" [(colorPicker)]="profileTheme.themeColor"
+          [value]="profileTheme.themeColor" readonly/>
+        <button #ignoredButton id="color-picker-4" class="btn btn-outline-dark btn-sm ml-1 mb-1" [style.background]="profileTheme.themeColor" (click)="toggle=!toggle;">Pick a Color</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Font Color</td>
+      <td>
+        <input type="text" #ignoredInput size="40%" maxlength="250" [cpFallbackColor]="'#f200ad'" [cpIgnoredElements]="[ignoredButton, ignoredInput]"
+          [(cpToggle)]="toggle2" [(colorPicker)]="profileTheme.fontColor" [value]="profileTheme.fontColor" readonly />
+        <button #ignoredButton id="color-picker-5" class="btn btn-outline-dark btn-sm ml-1 mb-1" [style.background]="profileTheme.fontColor"
+          (click)="toggle2=!toggle2;">Pick a Color</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Dashboard Top</td>
+      <td>
+        <img *ngIf="profileTheme.dashboardTopBackground!==''" src="{{profileTheme.dashboardTopBackground}}" style="width:180px; height:120px" class="mr-2">
+        <button type="button" class="btn btn-outline-dark btn-sm" (click)="openGallery(1)">Choose Icon</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Dashboard Logo</td>
+      <td>
+        <img *ngIf="profileTheme.dashboardLogo!==''" src="{{profileTheme.dashboardLogo}}" style="width:180px; height:120px" class="mr-2">
+        <button type="button" class="btn btn-outline-dark btn-sm" (click)="openGallery(2)">Choose Icon</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Profile Image</td>
+      <td>
+        <img *ngIf="profileTheme.profileBackgroundImage!==''" src="{{profileTheme.profileBackgroundImage}}" style="width:180px; height:120px" class="mr-2">
+        <button type="button" class="btn btn-outline-dark btn-sm" (click)="openGallery(3)">Choose Icon</button>
+      </td>
+    </tr>
+    <tr>
+      <td>Dashboard Text</td>
+      <td><textarea cols="60" rows="4" [(ngModel)]="profileTheme.dashboardText"></textarea></td>
+    </tr>
+    <tr>
+      <td>Url</td>
+      <td><input type="text" size="60%" maxlength="250" [(ngModel)]="profileTheme.url" /></td>
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td><input type="text" size="60%" maxlength="250" [(ngModel)]="profileTheme.status" /></td>
+    </tr>
+    <!-- <tr>
+      <td>Notes</td>
+      <td><input type="text" size="60%" maxlength="250" [(ngModel)]="product.notes" /></td>
+    </tr> -->
+    <!-- <tr>
+      <td>Sequence</td>
+      <td><input type="number" size="60%" maxlength="250" [(ngModel)]="product.seq" /></td>
+    </tr> -->
+  </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

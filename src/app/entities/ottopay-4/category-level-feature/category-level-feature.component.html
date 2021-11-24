@@ -1,0 +1,80 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Category level Merchant</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">User Category</label>
+            <!-- <input type="text" class="form-control" id="inputuserCategoryCode" [(ngModel)]='searchTerm.userCategoryName'
+              name="searchCode" placeholder="Enter User Category Name"> -->
+            <select [(ngModel)]="searchTerm.userCategoryId" class="form-control" name="userCategoryId">
+              <option value="0">- Pilih -</option>
+              <option *ngFor="let category of listUserCategory" [value]="category.id"
+                [selected]="category.id == searchTerm.userCategoryId">{{category.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="levelMerchantId">Level Merchant</label>
+            <!-- <input type="text" class="form-control" id="inputmerchantLevelFeatureName" [(ngModel)]='searchTerm.levelMerchantName'
+              name="searchName" placeholder="Enter Level Merchant Name"> -->
+            <select [(ngModel)]="searchTerm.levelMerchantId" class="form-control" name="levelMerchantId">
+              <option value="0">- Pilih -</option>
+              <option *ngFor="let level of listLevelMerchant" [value]="level.id"
+                [selected]="level.id == searchTerm.levelMerchantId">{{level.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="fiturProductId">Fitur Product</label>
+            <!-- <input type="text" class="form-control" id="inputFeatureProductName" [(ngModel)]='searchTerm.fiturProductName'
+              name="searchName" placeholder="Enter Fitur Product Name"> -->
+            <select [(ngModel)]="searchTerm.fiturProductId" class="form-control" name="fiturProductId">
+              <option value="0">- Pilih -</option>
+              <option *ngFor="let fitur of listFeatureProduct" [value]="fitur.id"
+                [selected]="fitur.id == searchTerm.fiturProductId">{{fitur.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+            class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">User Category</th>
+            <th scope="col">Level Merchant</th>
+            <th scope="col">Fitur Product</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let categoryLevelFeature of categoryLevelFeatureList">
+            <td><button type="button" (click)="open('edit', categoryLevelFeature)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{categoryLevelFeature.userCategoryName}}</td>
+            <td>{{categoryLevelFeature.levelMerchantName}}</td>
+            <td>{{categoryLevelFeature.fiturProductName}}</td>
+            <td>{{categoryLevelFeature.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

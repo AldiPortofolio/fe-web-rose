@@ -1,0 +1,49 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">List Approval Mdr Aggregator</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+
+            </form>
+        </div>
+
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Group Partner</th>
+                        <th scope="col">Merchant Category</th>
+                        <th scope="col">Transaction Type</th>
+                        <th scope="col">Mdr</th>
+                        <th scope="col">Mid Partner</th>
+                        <th scope="col">Mid Aggregator</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let approval of approvalList">
+                        <td>
+                            <button type="button" (click)="open(approval)" class="btn btn-outline-warning btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                        </td>
+                        <td>{{approval.actionTypeDesc}}</td>
+                        <td>{{approval.groupPartner}}</td>
+                        <td>{{approval.merchantCategory}}</td>
+                        <td>{{approval.transactionType}}</td>
+                        <td>{{approval.mdr}}</td>
+                        <td>{{approval.midPartner}}</td>
+                        <td>{{approval.midMerchant}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+        <!-- <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [pageSize]="totalRecord"
+            (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination> -->
+
+    </div>
+</div>

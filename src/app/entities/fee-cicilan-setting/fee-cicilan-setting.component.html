@@ -1,0 +1,93 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Fee Cicilian Setting</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row" style="padding-top: 15px; padding-left: 15px;">
+          <div class="col-md-2 mb-3 mt-2">
+            <label for="adminFeeDokuInput">Admin Fee Doku:</label>
+            <input type="number" class="form-control" id="adminFeeDoku"  name="inputadminFeeDoku" [(ngModel)]='feeCicilanInput.adminFeeDoku'
+              placeholder="Enter Admin Fee Doku">
+          </div>
+          <div class="col-md-2 mb-3 mt-2">
+            <label for="adminFeeInfinitiumInput">Admin Fee Infinitium:</label>
+            <input type="number" class="form-control" id="adminFeeInfinitium" name="inputadminFeeInfinitium" [(ngModel)]='feeCicilanInput.adminFeeInfinitium'
+              placeholder="Enter Admin Fee Infinitium">
+          </div>
+          <!-- <div class="col-md-2 mb-3 mt-2">
+            <label for="vaBcaFeeInput">VA BCA Fee:</label>
+            <input type="number" class="form-control" id="vaBcaFee" name="inputvaBcaFee" [(ngModel)]='feeCicilanInput.vaBcaFee'
+              placeholder="Enter VA BCA Fee">
+          </div>
+          <div class="col-md-2 mb-3 mt-2">
+            <label for="vaMandiriFeeInput">VA Mandiri Fee:</label>
+            <input type="number" class="form-control" id="vaMandiriFee" name="inputvaMandiriFee" [(ngModel)]='feeCicilanInput.vaMandiriFee'
+              placeholder="Enter VA Mandiri Fee">
+          </div>
+          <div class="col-md-2 mb-3 mt-2">
+            <label for="vaLainnyaFeeInput">Other VA Fee:</label>
+            <input type="number" class="form-control" id="vaLainnyaFee" name="inputvaLainnyaFee" [(ngModel)]='feeCicilanInput.vaLainnyaFee'
+            placeholder="Enter Other VA Fee">
+          </div> -->
+        </div>
+        <div style="padding-left: 15px; ">
+          <button type="button" class="btn btn-outline-primary btn-sm mr-2" (click)="save()">Save
+            <i class="fa fa-save fa-lg"></i>
+          </button>
+          <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+        </div>
+      </form>
+    </div>
+
+    <div style="padding: 15px 15px 15px 15px; ">
+      <table *ngIf="feeCicilan" class="table table-md table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="width:20%">Admin Fee Doku</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.adminFeeDoku}}</td>
+          </tr>
+          <tr>
+            <td style="width:20%">Admin Fee Infinitium</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.adminFeeInfinitium}}</td>
+          </tr>
+          <!-- <tr>
+            <td style="width:20%">VA BCA Fee</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.vaBcaFee}}</td>
+          </tr>
+          <tr>
+            <td style="width:20%">VA Mandiri Fee</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.vaMandiriFee}}</td>
+          </tr>
+          <tr>
+            <td style="width:20%">Other VA Fee</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.vaLainnyaFee}}</td>
+          </tr> -->
+          <tr>
+            <td style="width:20%">User</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.user}}</td>
+          </tr>
+          <tr>
+            <td style="width:20%">Created at</td>
+            <td style="width:2%">:</td>
+            <td>{{feeCicilan.createdAt | date:'yyyy-MM-dd HH:mm:ss':'GMT'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

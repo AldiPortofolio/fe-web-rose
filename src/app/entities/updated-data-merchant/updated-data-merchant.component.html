@@ -1,0 +1,71 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Approval Pengkinian Data</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Mid</label>
+            <input type="text" class="form-control" id="inputProductCode" [(ngModel)]='searchTerm.mid' name="searchCode"
+              placeholder="Enter Mid">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="institutionIdInput">Store Name</label>
+            <input type="text" class="form-control" id="inputName" [(ngModel)]='searchTerm.storeName' name="searchName"
+              placeholder="Enter Store Name">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="institutionIdInput">Bank Code</label>
+            <input type="text" class="form-control" id="inputName" [(ngModel)]='searchTerm.loanBankCode' name="searchName"
+              placeholder="Enter Bank Code">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="midInput">Status</label>
+            <select class="form-control" name="filter" [(ngModel)]="searchTerm.status">
+              <option value="">-All-</option>
+              <option *ngFor="let status of listStatus" [value]="status.value">
+                {{status.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i class="fa fa-refresh fa-lg"></i></button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Mid</th>
+            <th scope="col">Store Name</th>
+            <th scope="col">Bank Code</th>
+            <th scope="col">Status</th>
+            <th scope="col">Updated At</th>
+            <th scope="col">Updated By</th>
+            <!-- <th scope="col">Sequence</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let updatedDataMerchant of updatedDataMerchantList">
+            <td><button type="button" (click)="open('edit', updatedDataMerchant)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{updatedDataMerchant.mid}}</td>
+            <td>{{updatedDataMerchant.storeNameBefore}}</td>
+            <td>{{updatedDataMerchant.loanBankCode}}</td>
+            <td>{{updatedDataMerchant.status}}</td>
+            <td>{{updatedDataMerchant.updatedAt | date: 'dd-MM-yyyy' }}</td>
+            <td>{{updatedDataMerchant.updatedBy}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+      [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

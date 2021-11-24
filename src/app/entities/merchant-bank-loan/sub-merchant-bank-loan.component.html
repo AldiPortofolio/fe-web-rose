@@ -1,0 +1,48 @@
+<div class="modal-body">
+  <table class="table table-sm table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Master Loan ID</th>
+        <th scope="col">Loan ID</th>
+        <th scope="col">Loan Amount</th>
+        <th scope="col">Loan Paid Amount</th>
+        <th scope="col">Loan Txn Date</th>
+        <th scope="col">Loan Effective Date</th>
+        <th scope="col">Loan Maturity Date</th>
+        <th scope="col">Last Pay Date</th>
+        <th scope="col">Loan Status</th>
+        <th scope="col">Invoice No</th>
+        <th scope="col">Updated At</th>
+        <th scope="col">Updated By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of listSubLoan">
+        <td>
+        </td>
+        <td>{{data.masterBankLoanId}}</td>
+        <td>{{data.loanId}}</td>
+        <td>{{data.loanAmount}}</td>
+        <td>{{data.loanPaidAmount}}</td>
+        <td>{{data.loanTxnDate | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.loanEffectiveDate | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.loanMaturityDate | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.lastPayDate | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.loanStatus}}</td>
+        <td>{{data.invoiceNo}}</td>
+        <td>{{data.createdAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.createdBy}}</td>
+        <td>{{data.updatedAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+        <td>{{data.updatedBy}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

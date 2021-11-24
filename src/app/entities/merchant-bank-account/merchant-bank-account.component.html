@@ -1,0 +1,86 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Bank List</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="midInput">Status</label>
+                        <select class="form-control" name="filter" [(ngModel)]="searchTerm.status">
+                            <option value="">-All-</option>
+                            <option *ngFor="let status of listStatus" [value]="status.value">
+                                {{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="institutionIdInput">Mid</label>
+                        <input type="text" class="form-control" id="inputShortName" [(ngModel)]='searchTerm.mid'
+                            name="searchName" placeholder="Enter mid">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="role">Account Number</label>
+                        <input type="text" class="form-control" id="inputProductTitle" [(ngModel)]='searchTerm.accountNumber'
+                            name="searchTitle" placeholder="Enter Account Number">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="role">Account Name</label>
+                        <input type="text" class="form-control" id="inputProductTitle" [(ngModel)]='searchTerm.accountName' name="searchTitle"
+                            placeholder="Enter Account Name">
+                    </div>
+                </div>
+                <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+                <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+                        class="fa fa-refresh fa-lg"></i></button>
+            </form>
+        </div>
+        <div >
+            <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Mid</th>
+                        <th scope="col">Bank</th>
+                        <th scope="col">AccountNumber</th>
+                        <th scope="col">Account Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Notes</th>
+                        <th scope="col">Updated At</th>
+                        <th scope="col">Updated By</th>
+                        <!-- <th scope="col">Sequence</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let acc of listAccount">
+                        <td>
+                            <button type="button" (click)="open(acc)" class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                            <button *ngIf="acc.pushNotifStatus=='FAILED'" type="button" (click)="resend(acc)" class="btn btn-outline-info btn-sm">
+                                <i class="fa fa-refresh">resend push notif</i>
+                            </button>
+                            <!-- <button *ngIf="acc.status=='PENDING'" type="button" (click)="approve(acc)" class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-check">approve</i>
+                            </button>
+                            <button *ngIf="acc.status=='PENDING' " type="button" (click)="reject(acc)" class="btn btn-outline-danger btn-sm">
+                                <i class="fa fa-close">reject</i>
+                            </button> -->
+                        </td>
+                        <td>{{acc.mid}}</td>
+                        <td>{{acc.shortName}}</td>
+                        <td>{{acc.accountNumber}}</td>
+                        <td>{{acc.accountName}}</td>
+                        <td>{{acc.status}}</td>
+                        <td>{{acc.notes}}</td>
+                        <td>{{acc.updatedAt | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{acc.updatedBy}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

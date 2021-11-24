@@ -1,0 +1,86 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Fee Mdr Setting Merchant Group</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <!-- <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Product ID</label>
+            <input type="number" class="form-control" id="inputProductID" [(ngModel)]='searchTerm.id'
+            name="searchID" placeholder="Enter Product ID">
+          </div> -->
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="IDMerchantGroup">ID Merchant Group</label>
+            <input type="text" class="form-control" id="inputIDMerchantGroup" [(ngModel)]='searchTerm.idMerchantGroup'
+              name="searchCode" placeholder="Enter ID Merchant Group">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="institutionIdInput">Mid Bank</label>
+            <input type="text" class="form-control" id="inputMidBank" [(ngModel)]='searchTerm.midBank' name="searchName"
+              placeholder="Enter MID Bank">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="role">Bank</label>
+            <input type="text" class="form-control" id="inputBank" [(ngModel)]='searchTerm.bank' name="searchTitle"
+              placeholder="Enter Bank Name">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="role">Tenor</label>
+            <input type="text" class="form-control" id="inputTenor" [(ngModel)]='searchTerm.tenor' name="searchTitle"
+              placeholder="Enter Tenor">
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+            class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">ID Merchant Group</th>
+            <th scope="col">MID Bank</th>
+            <th scope="col">Secret ID</th>
+            <th scope="col">Bank</th>
+            <th scope="col">Tenor</th>
+            <th scope="col">Bank MDR</th>
+            <th scope="col">Merchant MDR</th>
+            <th scope="col">Merchant Fee type</th>
+            <th scope="col">Merchant Fee</th>
+            <th scope="col">Customer Fee type</th>
+            <th scope="col">Customer Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feeMdr of feeMdrList">
+            <td><button type="button" (click)="open('edit', feeMdr)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{feeMdr.idMerchantGroup}}</td>
+            <td>{{feeMdr.midBank}}</td>
+            <td>{{feeMdr.secretId}}</td>
+            <td>{{feeMdr.bank}}</td>
+            <td>{{feeMdr.tenor}}</td>
+            <td>{{feeMdr.bankMdr}}</td>
+            <td>{{feeMdr.merchantMdr}}</td>
+            <td>{{feeMdr.merchantFeeType}}</td>
+            <td>{{feeMdr.merchantFee}}</td>
+            <td>{{feeMdr.customerFeeType}}</td>
+            <td>{{feeMdr.customerFee}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

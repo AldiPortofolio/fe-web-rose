@@ -1,0 +1,83 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Image Management</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label>Name</label>
+            <input type="text" class="form-control" id="inputImageName" [(ngModel)]='searchTerm.name'
+              name="searchName" placeholder="Enter Image Name">
+          </div>
+        </div>
+          <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+              class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </button>
+      </form>
+    </div>
+
+    <div style="height:550px; padding-top: 15px">
+      <div class="card border-black" style="height: 530px">
+        <div class="card-body">
+    
+          <div class="row scrollable-img">
+    
+            <div *ngFor="let image of imageManagementList" class="card-columns mx-auto d-flex justify-content-center mb-3">
+              <div class="card bg-light pointer" (click)="open('edit', image)" style="width: 232px">
+                <img src="{{image.url}}" class="card-img-top" alt="Card image cap" style="width:232px; height:150px">
+                <div class="card-body">
+                  <h4><b>{{image.name}}</b></h4>
+                  <p>{{image.notes}}</p>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+    <!-- <div style="height:700px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Url</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Image</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let image of imageManagementList">
+            <td><button type="button" (click)="open('edit', image)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{image.name}}</td>
+            <td>{{image.url}}</td>
+            <td>{{image.notes}}</td>
+            <td>
+              
+              <img src="{{image.url}}" style="width:80px; height:80px">
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-primary btn-sm">
+                <i class="fa fa-download fa-md" (click)="downloadFile(image.url)"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div> -->
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

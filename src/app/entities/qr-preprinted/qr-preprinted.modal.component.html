@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span class="badge badge-light" style="color:cornflowerblue">Add New Request</span>
+    </h4>
+</div>
+<form>
+    <div class="modal-body">
+        <table class="table table-sm table-striped">
+            <tr>
+                <td>Province *</td>
+                <td>
+                    <select [(ngModel)]="provinceSelected" class="form-control" 
+                    (change)="onFilterCity($event.target.value)"
+                    [ngModelOptions]="{standalone: true}">
+                        <option value="0">- Province -</option>
+                        <option *ngFor="let province of listProvince" [value]="province.id">
+                            {{province.name}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && (provinceSelected == 0)">
+                        <div style="color: red"> *Field is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>City *</td>
+                <td>
+                    <select [(ngModel)]="citySelected" class="form-control" [ngClass]="{ 'is-invalid': submitted && (citySelected == '0' || citySelected == '-' || citySelected == null)}" [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let city of listCity" [value]="city.name" [selected]="city.name == citySelected">{{city.name}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && (citySelected == '-' || citySelected == '0' || provinceSelected == 0 || citySelected == null)">
+                        <div style="color: red"> *Field is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Postal Code</td>
+                <td>
+                    <input type="text" opNumbersOnly maxlength="5" [(ngModel)]="qrPreprinted.postalCode"  [ngModelOptions]="{standalone: true}" class="form-control" [ngClass]="{ 'is-invalid': submitted && (qrPreprinted.postalCode == '' || qrPreprinted.postalCode == null || qrPreprinted.postalCode == undefined) }" />
+                    <div *ngIf="submitted && (qrPreprinted.postalCode == '' || qrPreprinted.postalCode == null || qrPreprinted.postalCode == undefined)">
+                        <div style="color: red"> *Field is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Mcc *</td>
+                <td>
+                    <select [(ngModel)]="qrPreprinted.mcc" class="form-control" [ngClass]="{ 'is-invalid': submitted && (qrPreprinted.mcc == '0' || qrPreprinted.mcc == '-' || qrPreprinted.mcc == null)}"
+                        [ngModelOptions]="{standalone: true}">
+                        <option *ngFor="let mcc of listMcc" [value]="mcc.code">{{mcc.code}} - {{mcc.name}}
+                        </option>
+                    </select>
+                    <div *ngIf="submitted && (qrPreprinted.mcc == '' || qrPreprinted.mcc == null || qrPreprinted.mcc == '-')">
+                        <div style="color: red"> *Field is required</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td>
+                    <input type="number" opNumbersOnly maxlength="10" [(ngModel)]="qrPreprinted.totalReq" [ngModelOptions]="{standalone: true}"
+                        class="form-control" [ngClass]="{ 'is-invalid': submitted && (qrPreprinted.totalReq == 0 || qrPreprinted.totalReq == null || qrPreprinted.totalReq == undefined) }" />
+                    <div *ngIf="submitted && (qrPreprinted.totalReq == 0 || qrPreprinted.totalReq == null || qrPreprinted.totalReq == undefined)">
+                        <div style="color: red"> *Field is required</div>
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+    <div class="modal-footer">
+        <div>
+            <button type="button" class="btn btn-outline-danger" (click)="validate()">Save
+                <i class="fa fa-sace fa-lg"></i>
+            </button>
+            <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+                <i class="fa fa-sace fa-lg"></i>
+            </button>
+        </div>
+    </div>  
+</form>

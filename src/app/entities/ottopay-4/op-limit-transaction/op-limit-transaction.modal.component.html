@@ -1,0 +1,107 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <table class="table table-sm table-striped">
+    <tr>
+      <th style="width: 30%">
+        <span class="badge badge-pill badge-primary">{{limitTransaction.id}}</span>
+      </th>
+      <th style="width:70%">
+        <button type="button" class="btn btn-outline-primary" style="color:green">
+          Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+          <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+        </button>
+      </th>
+    </tr>
+    <tr>
+      <td>User Category</td>
+      <!-- <td><input type="text" size="60%" maxlength="250" [(ngModel)]="limitTransaction.userCategoryId" /></td> -->
+      <td>
+        <select [(ngModel)]="limitTransaction.userCategoryId" class="form-control" style="width:70%" >
+          <option value="">- Pilih -</option>
+          <option *ngFor="let category of listUserCategory" [value]="category.code"
+            [selected]="category.code == limitTransaction.userCategoryId">{{category.code}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Level Merchant</td>
+      <td>
+        <select [(ngModel)]="limitTransaction.levelMerchant" class="form-control" style="width:70%">
+          <option value="">- Pilih -</option>
+          <option *ngFor="let merchant of listLevelMerchant" [value]="merchant.code"
+            [selected]="merchant.code == limitTransaction.levelMerchant">{{merchant.code}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <!-- <tr>
+      <td>Limit Qr Amount</td>
+      <td><input type="number" size="70%" maxlength="250" [(ngModel)]="limitTransaction.limitQrAmount" /></td>
+    </tr>
+    <tr>
+      <td>Limit Qr Freq</td>
+      <td><input type="number" size="70%" maxlength="250" [(ngModel)]="limitTransaction.limitQrFreq" /></td>
+    </tr>
+    <tr>
+      <td>Limit Ppob Amount</td>
+      <td><input type="number" width="70%" maxlength="250" [(ngModel)]="limitTransaction.limitPpobAmount" /></td>
+    </tr>
+    <tr>
+      <td>Limit Ppob Freq</td>
+      <td><input type="number" width="100%" maxlength="250" [(ngModel)]="limitTransaction.limitPpobFreq" /></td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td><input type="text" size="60%" maxlength="250" [(ngModel)]="limitTransaction.category" /></td>
+    </tr> -->
+    <tr>
+      <td>Feature Product</td>
+      <td>
+        <select [(ngModel)]="limitTransaction.featureProduct" class="form-control" style="width:70%">
+          <option value="">- Pilih -</option>
+          <option *ngFor="let feature of listFeatureProduct" [value]="feature.code"
+            [selected]="feature.code == limitTransaction.featureProduct">{{feature.code}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Limit Freq</td>
+      <td><input type="text" width="100%" opNumbersOnly maxlength="5" [(ngModel)]="limitTransaction.limitFreq" /></td>
+    </tr>
+    <tr>
+      <td>Min Limit Amount</td>
+      <td><input type="text" width="100%" opNumbersOnly maxlength="14" [(ngModel)]="limitTransaction.minLimitAmount" /></td>
+    </tr>
+    <tr>
+      <td>Max Limit Amount</td>
+      <td><input type="text" width="100%" opNumbersOnly maxlength="14" [(ngModel)]="limitTransaction.limitAmount" /></td>
+    </tr>
+    <tr>
+      <td>Time Frame</td>
+      <td>
+        <select [(ngModel)]="limitTransaction.timeFrame" class="form-control" style="width:70%">
+          <option value="">- Pilih -</option>
+          <option *ngFor="let time of listTimeFrame" [value]="time.code"
+            [selected]="time.code == limitTransaction.timeFrame">{{time.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

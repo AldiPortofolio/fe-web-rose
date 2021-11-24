@@ -1,0 +1,233 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+  </h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            Mid:
+        </div>
+        <div class="col-md-3 mb-3">
+            {{updatedDataMerchant.mid}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            Store Phone Number:
+        </div>
+        <div class="col-md-3 mb-3">
+            {{updatedDataMerchant.storePhoneNumber}}
+        </div>
+    </div>
+
+    <table class="table table-sm table-striped">
+        <tr>
+            <th>Field Name</th>
+            <th>Data Before</th>
+            <th>Data After</th>
+        </tr>
+        <tr>
+            <td *ngIf="updatedDataMerchant.storeName != updatedDataMerchant.storeNameBefore">Store Name</td>
+            <td>{{updatedDataMerchant.storeNameBefore}}</td>
+            <td>{{updatedDataMerchant.storeName}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.storePhoneNumber != updatedDataMerchant.storePhoneNumberBefore">
+            <td>Store Phone Number</td>
+            <td>{{updatedDataMerchant.storePhoneNumberBefore}}</td>
+            <td>{{updatedDataMerchant.storePhoneNumber}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.address != updatedDataMerchant.addressBefore">
+            <td>Address</td>
+            <td>{{updatedDataMerchant.addressBefore}}</td>
+            <td>{{updatedDataMerchant.address}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.province != updatedDataMerchant.provinceBefore">
+            <td>Provinsi</td>
+            <td>{{updatedDataMerchant.provinceBeforre}}</td>
+            <td>{{updatedDataMerchant.province}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.city != updatedDataMerchant.cityBefore">
+            <td>Kab/Kota</td>
+            <td>{{updatedDataMerchant.cityBefore}}</td>
+            <td>{{updatedDataMerchant.city}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.district != updatedDataMerchant.districtBefore">
+            <td>Kecamatan</td>
+            <td>{{updatedDataMerchant.districtBefore}}</td>
+            <td>{{updatedDataMerchant.district}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.village != updatedDataMerchant.villageBefore">
+            <td>Kelurahan</td>
+            <td>{{updatedDataMerchant.villageBefore}}</td>
+            <td>{{updatedDataMerchant.village}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.postalCode != updatedDataMerchant.postalCodeBefore">
+            <td>Postal Code</td>
+            <td>{{updatedDataMerchant.postalCodeBefore}}</td>
+            <td>{{updatedDataMerchant.postalCode}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.tipeBisnis != updatedDataMerchant.tipeBisnisBefore">
+            <td>Tipe Bisnis</td>
+            <td>{{updatedDataMerchant.tipeBisnisBefore}}</td>
+            <td>{{updatedDataMerchant.tipeBisnis}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.srId != updatedDataMerchant.srIdBefore">
+            <td>SR ID</td>
+            <td>{{updatedDataMerchant.srIdBefore}}</td>
+            <td>{{updatedDataMerchant.srId}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.longitude != updatedDataMerchant.longitudeBefore">
+            <td>Longitude</td>
+            <td>{{updatedDataMerchant.longitudeBefore}}</td>
+            <td>{{updatedDataMerchant.longitude}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.latitude != updatedDataMerchant.latitudeBefore">
+            <td>Latitude</td>
+            <td>{{updatedDataMerchant.latitudeBefore}}</td>
+            <td>{{updatedDataMerchant.latitude}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.lokasiBisnis != updatedDataMerchant.lokasiBisnisBefore">
+            <td>Lokasi Bisnis</td>
+            <td>{{updatedDataMerchant.lokasiBisnisBefore}}</td>
+            <td>{{updatedDataMerchant.lokasiBisnis}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.jenisLokasiBisnis != updatedDataMerchant.jenisLokasiBisnisBefore">
+            <td>Jenis Lokasi Bisnis</td>
+            <td>{{updatedDataMerchant.jenisLokasiBisnisBefore}}</td>
+            <td>{{updatedDataMerchant.jenisLokasiBisnis}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.categoryBisnis != updatedDataMerchant.categoryBisnisBefore">
+            <td>Category Bisnis</td>
+            <td>{{updatedDataMerchant.categoryBisnisBefore}}</td>
+            <td>{{updatedDataMerchant.categoryBisnis}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.operationHour != updatedDataMerchant.operationHourBefore">
+            <td>Operation Hour</td>
+            <td>{{updatedDataMerchant.operationHourBefore}}</td>
+            <td>{{updatedDataMerchant.operationHour}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.bestVisit != updatedDataMerchant.bestVisitBefore">
+            <td>Best Visit</td>
+            <td>{{updatedDataMerchant.bestVisitBefore}}</td>
+            <td>{{updatedDataMerchant.bestVisit}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.userCategory != updatedDataMerchant.userCategoryBefore">
+            <td>User Category</td>
+            <td>{{updatedDataMerchant.userCategoryBefore}}</td>
+            <td>{{updatedDataMerchant.userCategory}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.patokan != updatedDataMerchant.patokanBefore">
+            <td>Patokan</td>
+            <td>{{updatedDataMerchant.patokanBefore}}</td>
+            <td>{{updatedDataMerchant.patokan}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.loanBankAccount != updatedDataMerchant.loanBankAccountBefore">
+            <td>Bank Account</td>
+            <td>{{updatedDataMerchant.loanBankAccountBefore}}</td>
+            <td>{{updatedDataMerchant.loanBankAccount}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.merchantGroupId != updatedDataMerchant.merchantGroupIdBefore">
+            <td>Merchant Group ID</td>
+            <td>{{updatedDataMerchant.merchantGroupIdBefore}}</td>
+            <td>{{updatedDataMerchant.merchantGroupId}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.userCategoryCode != updatedDataMerchant.userCategoryCodeBefore">
+            <td>User Category Code</td>
+            <td>{{updatedDataMerchant.userCategoryCodeBefore}}</td>
+            <td>{{updatedDataMerchant.userCategoryCode}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.partnerCode != updatedDataMerchant.partnerCodeBefore">
+            <td>Partner Code</td>
+            <td>{{updatedDataMerchant.partnerCodeBefore}}</td>
+            <td>{{updatedDataMerchant.partnerCode}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.partnerCustomerId != updatedDataMerchant.partnerCustomerIdBefore">
+            <td>Partner Customer ID</td>
+            <td>{{updatedDataMerchant.partnerCustomerIdBefore}}</td>
+            <td>{{updatedDataMerchant.partnerCustomerId}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerName != updatedDataMerchant.ownerNameBefore">
+            <td>Owner Name</td>
+            <td>{{updatedDataMerchant.ownerNameBefore}}</td>
+            <td>{{updatedDataMerchant.ownerName}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerPhoneNumber != updatedDataMerchant.ownerPhoneNumberBefore">
+            <td>Owner Phone Number</td>
+            <td>{{updatedDataMerchant.ownerPhoneNumberBefore}}</td>
+            <td>{{updatedDataMerchant.ownerPhoneNumber}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerNoId != updatedDataMerchant.ownerNoIdBefore">
+            <td>Owner No ID</td>
+            <td>{{updatedDataMerchant.ownerNoIdBefore}}</td>
+            <td>{{updatedDataMerchant.ownerNoId}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerTanggalLahir != updatedDataMerchant.ownerTanggalLahirBefore">
+            <td>Owner Tanggal Lahir</td>
+            <td>{{updatedDataMerchant.ownerTanggalLahirBefore}}</td>
+            <td>{{updatedDataMerchant.ownerTanggalLahir}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerAddress != updatedDataMerchant.ownerAddressBefore">
+            <td>Owner Address</td>
+            <td>{{updatedDataMerchant.ownerAddressBefore}}</td>
+            <td>{{updatedDataMerchant.ownerAddress}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerProvinsi != updatedDataMerchant.ownerProvinsiBefore">
+            <td>Owner Provinsi</td>
+            <td>{{updatedDataMerchant.ownerProvinsiBeforre}}</td>
+            <td>{{updatedDataMerchant.ownerProvinsi}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerCity != updatedDataMerchant.ownerCityBefore">
+            <td>Owner Kab/Kota</td>
+            <td>{{updatedDataMerchant.ownerCityBefore}}</td>
+            <td>{{updatedDataMerchant.ownerCity}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerKecamatan != updatedDataMerchant.ownerKecamatanBefore">
+            <td>Owner Kecamatan</td>
+            <td>{{updatedDataMerchant.ownerKecamatanBefore}}</td>
+            <td>{{updatedDataMerchant.ownerKecamatan}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerKelurahan != updatedDataMerchant.ownerKelurahanBefore">
+            <td>Owner Kelurahan</td>
+            <td>{{updatedDataMerchant.ownerKelurahanBefore}}</td>
+            <td>{{updatedDataMerchant.ownerKelurahan}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.ownerPostalCode != updatedDataMerchant.ownerPostalCodeBefore">
+            <td>Owner Postal Code</td>
+            <td>{{updatedDataMerchant.ownerPostalCodeBefore}}</td>
+            <td>{{updatedDataMerchant.ownerPostalCode}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.rt != updatedDataMerchant.rtBefore">
+            <td>RT</td>
+            <td>{{updatedDataMerchant.rtBefore}}</td>
+            <td>{{updatedDataMerchant.rt}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.rw != updatedDataMerchant.rwBefore">
+            <td>RW</td>
+            <td>{{updatedDataMerchant.rwBefore}}</td>
+            <td>{{updatedDataMerchant.rw}}</td>
+        </tr>
+        <tr *ngIf="updatedDataMerchant.expireDate != updatedDataMerchant.expireDateBefore">
+            <td>Masa Berlaku KTP</td>
+            <td>{{updatedDataMerchant.expireDateBefore | date: 'dd-MM-yyyy'}}</td>
+            <td>{{updatedDataMerchant.expireDate | date: 'dd-MM-yyyy'}}</td>
+        </tr>
+
+        
+    </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button *ngIf="updatedDataMerchant.status=='PENDING'" type="button" class="btn btn-outline-primary"
+      (click)="save()">Approve
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button *ngIf="updatedDataMerchant.status=='PENDING'" type="button" class="btn btn-outline-danger"
+      (click)="reject()">Reject
+      <i class="fa fa-trash fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

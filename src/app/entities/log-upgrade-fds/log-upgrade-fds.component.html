@@ -1,0 +1,71 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Log Upgrade FDS</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="issuerNameInput">Phone Number</label>
+                        <input type="text" class="form-control" id="inputProductCode" [(ngModel)]='searchTerm.phoneNumber'
+                            name="searchCode" placeholder="Enter Code">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="institutionIdInput">Status</label>
+                        <select class="form-control" [(ngModel)]="searchTerm.status" [ngModelOptions]="{standalone: true}">
+
+                            <option value="">- Pilih -</option>
+                            <option *ngFor="let status of listStatus" [value]="status.code" [selected]="status.code == searchTerm.status">
+                                {{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+                <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+                        class="fa fa-refresh fa-lg"></i></button>
+                
+            </form>
+        </div>
+        <div style="padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Phone Number</th>
+                        <!-- <th scope="col">Req</th> -->
+                        <th scope="col">Res</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Updated At</th>
+                        <th scope="col">Updated By</th>
+                        <th scope="col">Retry At</th>
+                        <th scope="col">Retry By</th>
+                        <th scope="col"></th>
+                        <!-- <th scope="col">Sequence</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of logUpgradeFdsList">
+                        <td><button type="button" (click)="open('edit', data)" class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                        </td>
+                        <td>{{data.phoneNumber}}</td>
+                        <!-- <td>{{data.req}}</td> -->
+                        <td>{{data.res}}</td>
+                        <td>{{data.status}}</td>
+                        <td>{{data.updatedAt | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{data.updatedBy}}</td>
+                        <td>{{data.retryAt | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{data.retryBy}}</td>
+                        <td>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

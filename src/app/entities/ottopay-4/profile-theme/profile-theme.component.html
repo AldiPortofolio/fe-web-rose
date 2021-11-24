@@ -1,0 +1,71 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Profile Theme</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label>User Category Name</label>
+            <input type="text" class="form-control" id="inputImageName" [(ngModel)]='searchTerm.userCategoryName'
+              name="searchName" placeholder="Enter Image Name">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label>Level Merchant Name</label>
+            <input type="text" class="form-control" id="levelMerchantName" [(ngModel)]='searchTerm.levelMerchantName' name="searchName"
+              placeholder="Enter Image Name">
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn mr-1 btn-outline-danger btn-sm">Reset <i
+            class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+
+    <div style="min-height:350px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>User Category Name</th>
+            <th>Level Merchant Name</th>
+            <th>Theme Color</th>
+            <th>Font Color</th>
+            <th>Dashboard Top</th>
+            <th>Dashboard Logo</th>
+            <th>Profile Image</th>
+            <th>Dashboard Text</th>
+            <th>Url</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let profileTheme of profileThemeList ">
+            <td>
+              <button type="button" (click)="open('edit', profileTheme)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{profileTheme.userCategoryName}}</td>
+            <td>{{profileTheme.levelMerchantName}}</td>
+            <td>{{profileTheme.themeColor}}</td>
+            <td>{{profileTheme.fontColor}}</td>
+            <td><a href={{profileTheme.dashboardTopBackground}} target="_blank"><img src="{{profileTheme.dashboardTopBackground}}" style="width:130px; height:90px"></a></td>
+            <td><a href={{profileTheme.dashboardLogo}} target="_blank"><img src="{{profileTheme.dashboardLogo}}" style="width:130px; height:90px"></a></td>
+            <td><a href={{profileTheme.profileBackgroundImage}} target="_blank"><img src="{{profileTheme.profileBackgroundImage}}" style="width:130px; height:90px"></a></td>
+            <td>{{profileTheme.dashboardText}}</td>
+            <td>{{profileTheme.url}}</td>
+            <td>{{profileTheme.status}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

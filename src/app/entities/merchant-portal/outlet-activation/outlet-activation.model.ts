@@ -1,0 +1,27 @@
+export class OutletActivation {
+    constructor(
+        public id?: number,
+        public merchant_group_id?: string,
+        public mid?: string,
+        public terminal_id?: string,
+        public outlet_name?: string,
+        public merchant_group_name?: string,
+        public mpan?: string,
+        public alamat?: string,
+        public kelurahan?: string,
+        public kecamatan?: string,
+        public kabupaten_kota?: string,
+        public provinsi?: string,
+        public email?: string,
+        public owner_name?: string,
+        public merchant_name?: string,
+        public merchant_type?: string,
+        public store_phone_number?: string,
+        public merchant_outlet_id?: string,
+        public address?: string,
+        public portal_status?: number,
+        public category?: string,
+        public action?: string,
+        public profile_pict?: string,
+    ) { }
+}

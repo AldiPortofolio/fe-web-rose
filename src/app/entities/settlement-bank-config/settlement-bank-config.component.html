@@ -1,0 +1,62 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Settlement Bank Type List</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Bank</label>
+            <select [(ngModel)]="searchTerm.bankCode" class="form-control" [ngModelOptions]="{standalone: true}">
+              <option value="">- Pilih Bank -</option>
+              <option *ngFor="let code of codeList" [value]="code.code">
+                {{code.shortName}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="statusInput">Status</label>
+            <select [(ngModel)]="searchTerm.status" class="form-control" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let status of statusList" [value]="status.val">
+                {{status.status}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+            class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open()">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Settlement Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Updated By</th>
+            <th scope="col">Updated At</th>
+            <!-- <th scope="col">Sequence</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bank of settlementBankList">
+            <td>{{bank.bank_name}}</td>
+            <td>{{bank.settlement_type}}</td>
+            <td>{{bank.status}}</td>
+            <td>{{bank.updated_by}}</td>
+            <td>{{bank.updated_at | date: 'dd-MM-yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

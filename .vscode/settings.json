@@ -1,0 +1,7 @@
+{
+    "editor.formatOnPaste": true,
+    "tslint.alwaysShowRuleFailuresAsWarnings": true,
+    "tslint.alwaysShowStatus": true,
+    "tslint.jsEnable": true,
+    "tslint.validateWithDefaultConfig": true
+}

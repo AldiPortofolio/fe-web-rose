@@ -1,0 +1,27 @@
+export class FeeMdrSettingMerchant {
+    constructor(
+        public id?: number,
+        public storeName?: string,
+        public midMerchant?: string,
+        public midBank?: string,
+        public secretId?: string,
+        public bank?: string,
+        public tenor?: string,
+        public planId?: string,
+        public bankMdr?: number,
+        public merchantMdr?: number,
+        public merchantFeeType?: string,
+        public merchantFee?: number,
+        public customerFeeType?: string,
+        public customerFee?: number,
+        public status?: string,
+        public updatedAt?: string,
+        public updatedBy?: string,
+        public limit?: number,
+        public page?: number,
+        public errCode?: any,
+        public errDesc?: any,
+        public bankMdrCredit?: number,
+        public merchantMdrCredit?: number,
+    ) { }
+}

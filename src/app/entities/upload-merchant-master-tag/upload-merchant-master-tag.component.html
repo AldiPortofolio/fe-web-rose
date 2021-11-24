@@ -1,0 +1,83 @@
+<!-- <op-navigation></op-navigation> -->
+
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Merchant Master tag Upload</h5>
+    <div>
+      <br>
+      <!--  SEARCH -->
+      <form>
+        <div class="form-group">
+        </div>
+        <input type="file" class="btn btn-outline-primary btn-sm" accept="csv/*" (change)="handleFileInput($event.target.files)"
+          name="file" />
+        <button type="submit" (click)="submitUpload()" class="btn btn-outline-primary btn-md">
+          <i class="fa fa-upload fa-lg"></i>
+        </button>
+        <button type="submit" class="btn btn-outline-info btn-md" (click)="onRefresh()">
+          <i class="fa fa-refresh fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div>
+      <button class="btn btn-link btn-sm mt-1" (click)="downloadExample()">
+        download template
+        <i class="fa fa-download fa-sm"></i>
+      </button>
+    </div>
+
+    <div style="height:400px; padding: 20px 20px 5px 5px">
+      <div class="table-responsive">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Request Date</th>
+              <th scope="col">Name File</th>
+              <th scope="col">Status</th>
+              <th scope="col">Requestor</th>
+              <th scope="col">Total Upload</th>
+              <th scope="col">Total Success</th>
+              <th scope="col">Total Error</th>
+              <th scope="col">File Upload</th>
+              <th scope="col">File Success</th>
+              <th scope="col">File Err</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let merchant of reportList">
+              <td>{{merchant.date | date:'dd - MMMM - yyyy':'GMT'}}</td>
+              <td>{{merchant.filePath}}</td>
+              <td>{{merchant.status}}</td>
+              <td>{{merchant.user}}</td>
+              <td>{{merchant.totalUpload}}</td>
+              <td>{{merchant.totalSuccess}}</td>
+              <td>{{merchant.totalError}}</td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadFile(merchant.filePath)">
+                  <i class="fa fa-download fa-md"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadResultFile(merchant.filePath)">
+                  <i class="fa fa-download fa-md"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="downloadResultFile(merchant.filePathErr)">
+                  <i class="fa fa-download fa-md"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord" (pageChange)="loadPage($event)"
+        [boundaryLinks]="true"></ngb-pagination>
+    </div>
+
+
+    <!-- <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination> -->
+
+  </div>
+</div>

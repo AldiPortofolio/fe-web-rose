@@ -1,0 +1,83 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Report MAG Transactions</h5>
+    <div>
+      <!--  SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col">
+            <label for="from">Filter by</label>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <select class="form-control" name="filter" [(ngModel)]="searchTerm.filter_by">
+              <option value="">-All-</option>
+              <option *ngFor="let filter_by of filterBy" [value]="filter_by.code" [selected]="filter_by.code == searchTerm.filter_by">
+                {{filter_by.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col">
+            <input type="text" class="form-control form-half" id="inputSearch" name="search" autofocus
+              [(ngModel)]="searchTerm.keyword" placeholder="input keyword" />
+          </div>
+          <div class="col"></div>
+          <div class="col"></div>
+        </div>
+        <button type="submit" class="btn mr-2 btn-outline-success btn-sm" (click)="onFilter()">Search
+          <i class="fa fa-search fa-lg"></i>
+        </button>
+        <button type="submit" class="btn mr-2 btn-outline-danger btn-sm" (click)="resetFilter()">Reset
+          <i class="fa fa-refresh fa-lg"></i>
+        </button>
+        <button type="submit" class="btn btn-outline-primary btn-sm" (click)="export()">Export
+          <i class="fa fa-download fa-md"></i>
+        </button>
+      </form>
+    </div>
+    <div style="padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Partner</th>
+            <th scope="col">Merchant ID</th>
+            <th scope="col">Billing ID</th>
+            <!-- <th scope="col">Terminal ID</th> -->
+            <th scope="col">Channel</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Tip</th>
+            <th scope="col">Total Amount</th>
+            <!-- <th scope="col">Req Reference Number</th> -->
+            <th scope="col">Status</th>
+            <th scope="col">Pay Reference</th>
+            <!-- <th scope="col">MAG Billing ID</th> -->
+            <th scope="col">Pay Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let magTransaction of magTransactionsList">
+            <td>{{magTransaction.user}}</td>
+            <td>{{magTransaction.partner}}</td>
+            <td>{{magTransaction.merchant_id}}</td>
+            <td>{{magTransaction.billing_id}}</td>
+            <!-- <td>{{magTransaction.terminal_id}}</td> -->
+            <td>{{magTransaction.channel}}</td>
+            <td>{{magTransaction.amount}}</td>
+            <td>{{magTransaction.tip}}</td>
+            <td>{{magTransaction.total_amount}}</td>
+            <!-- <td>{{magTransaction.req_reference_no}}</td> -->
+            <td>{{magTransaction.merchant_pay_status}}</td>
+            <td>{{magTransaction.merchant_pay_ref}}</td>
+            <!-- <td>{{magTransaction.mag_billing_id}}</td> -->
+            <td>{{magTransaction.merchant_pay_time | date:'yyyy-MM-dd HH:mm:ss':'GMT'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="md" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

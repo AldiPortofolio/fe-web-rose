@@ -1,0 +1,67 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Monitoring Aktivasi FDS</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="exampleInputEmail1">Nama / No Telephone / MID</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autofocus
+                [(ngModel)]='searchTerm.key' name="searchName" placeholder="Enter Name">
+            </div>
+            <div class="col">
+              <label for="from">Date From</label>
+              <input type="text" class="form-control form-half" ngbDatepicker #dStart="ngbDatepicker"
+                [(ngModel)]="dateStartMdl" name="dateStart" />
+              <button (click)="dStart.toggle()">
+                <i class="fa fa-calendar fa-lg"></i>
+              </button>
+            </div>
+            <div class="col">
+              <label for="to">To</label>
+              <input type="text" class="form-control form-half" ngbDatepicker #dEnd="ngbDatepicker"
+                [(ngModel)]="dateEndMdl" name="dateEnd" />
+              <button (click)="dEnd.toggle()">
+                <i class="fa fa-calendar fa-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <!-- <button (click)="export()" type="button" style="margin-left: 3px;" class="btn btn-outline-info btn-sm">Export
+          <i class="fa fa-download fa-md"></i>
+        </button> -->
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col">Store Name</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Mid</th>
+            <th scope="col">Merchant PAN</th>
+            <th scope="col">Aktivasi Status</th>
+            <th scope="col">Tanggal Aktivasi FDS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of monitoringAktivasiFdsList">
+            <td>{{data.storeName}}</td>
+            <td>{{data.storePhoneNumber}}</td>
+            <td>{{data.mid}}</td>
+            <td>{{data.mpan}}</td>
+            <td>{{data.statusActivationFds}}</td>
+            <td>{{data.updatedAt | date:'dd-MM-yyyy hh:mm:ss':'GMT'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

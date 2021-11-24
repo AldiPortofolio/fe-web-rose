@@ -1,0 +1,91 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Banner</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label>User Category Code</label>
+            <select [(ngModel)]="searchTerm.userCategoryId" name="searchName" class="form-control" style="width:70%">
+              <option value="0">- Pilih -</option>
+              <option *ngFor="let usercategory of userCategoryList" [value]="usercategory.id"
+                [selected]="usercategory.id == searchTerm.userCategoryId">{{usercategory.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label>Level Merchant</label>
+            <select [(ngModel)]="searchTerm.levelMerchantId" name="searchName" class="form-control" style="width:70%">
+              <option value="0">- Pilih -</option>
+              <option *ngFor="let levelMerchant of listLevelMerchant" [value]="levelMerchant.id"
+                [selected]="levelMerchant.id == searchTerm.levelMerchantId">{{levelMerchant.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label>Banner Name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autofocus
+              [(ngModel)]='searchTerm.bannerName' name="searchName" placeholder="Enter Banner Name">
+          </div>
+        </div>
+          <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+              class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn mr-1 btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </button>
+      </form>
+    </div>
+
+    <div style=" padding: 15px 15px 15px 15px; ">
+          <table class="table table-sm table-hover table-striped mt-2">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">User Category</th>
+                <th scope="col">Level Merchant</th>
+                <th scope="col">Banner Name</th>
+                <th scope="col">Detail Banner</th>
+                <th scope="col">Image Name</th>
+                <th scope="col">Image Link</th>
+                <th scope="col">Sequence</th>
+                <th scope="col">status</th>
+                <th scope="col">action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let banner of bannerList">
+                <td><button type="button" (click)="open('edit', banner)" class="btn btn-outline-success btn-sm">
+                    <i class="fa fa-list"></i>
+                  </button>
+                </td>
+                <td>{{banner.userCategoryName}}</td>
+                <td>{{banner.levelMerchantName}}</td>
+                <td>{{banner.bannerName}}</td>
+                <td>{{banner.detailBanner}}</td>
+                <td>{{banner.name}}</td>
+                <td ><a href={{banner.adsLink}} target="_blank">{{banner.adsLink}}</a></td>               
+                <td>{{banner.seq}}</td>
+                <td>{{banner.status}}</td>
+                <button type="button" (click)="remove(banner)" class="btn btn-outline-danger btn-sm">
+                  <i class="fa fa-trash fa-sm"></i>
+                </button>
+                <!-- <td>
+                  <img src="{{image.url}}" style="width:80px; height:80px">
+                </td> -->
+                <!-- <td>
+                  <button type="button" class="btn btn-outline-primary btn-sm">
+                    <i class="fa fa-download fa-md" (click)="downloadFile(image.url)"></i>
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

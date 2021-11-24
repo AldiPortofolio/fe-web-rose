@@ -1,0 +1,70 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Master Tag List</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="issuerNameInput">Code</label>
+                        <input type="text" class="form-control" id="inputProductCode" [(ngModel)]='searchTerm.code'
+                            name="searchCode" placeholder="Enter Code">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="institutionIdInput">Name</label>
+                        <input type="text" class="form-control" id="inputName" [(ngModel)]='searchTerm.name'
+                            name="searchName" placeholder="Enter Short Name">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="midInput">Status</label>
+                        <select class="form-control" name="filter" [(ngModel)]="searchTerm.status">
+                            <option value="">-All-</option>
+                            <option *ngFor="let status of listStatus" [value]="status.code">
+                                {{status.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+                <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+                        class="fa fa-refresh fa-lg"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+                    <i class="fa fa-plus-circle fa-lg"></i>
+                </button>
+            </form>
+        </div>
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Updated At</th>
+                        <th scope="col">Updated By</th>
+                        <!-- <th scope="col">Sequence</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let masterTag of masterTagList">
+                        <td><button type="button" (click)="open('edit', masterTag)" class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                        </td>
+                        <td>{{masterTag.code}}</td>
+                        <td>{{masterTag.name}}</td>
+                        <td>{{masterTag.description}}</td>
+                        <td>{{masterTag.status==true ? 'Active' : 'Inactive'}}</td>                        
+                        <td>{{masterTag.updatedAt | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{masterTag.updatedBy}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

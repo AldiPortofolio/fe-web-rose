@@ -1,0 +1,72 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title mb-4">Master Service And Master Type</h5>
+
+    <div class="mt-4">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <button type="button" class="btn btn-outline-primary btn-sm mr-1" (click)="openService('addnew', null)">Add Master
+              Service
+              <i class="fa fa-plus-circle fa-lg"></i>
+            </button>
+            <div style="height:400px;">
+              <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Service Name</th>
+                    <th>Updated At</th>
+                    <th>Update By</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let master of masterServiceList">
+                    <td><button type="button" (click)="openService('edit', master)" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-list"></i>
+                      </button>
+                    </td>
+                    <td>{{master.name}}</td>
+                    <td>{{master.updatedAt}}</td>
+                    <td>{{master.updatedBy}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="openType('addnew', null)">Add Master Type
+              <i class="fa fa-plus-circle fa-lg"></i>
+            </button>
+            <div class="row" style="height:400px; padding-right: 15px; padding-left: 15px">
+              <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Type Name</th>
+                    <th>Updated At</th>
+                    <th>Update By</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let master of masterTypeList">
+                    <td><button type="button" (click)="openType('edit', master)" class="btn btn-outline-success btn-sm">
+                        <i class="fa fa-list"></i>
+                      </button>
+                    </td>
+                    <td>{{master.name}}</td>
+                    <td>{{master.updatedAt}}</td>
+                    <td>{{master.updatedBy}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination> -->
+  </div>
+</div>

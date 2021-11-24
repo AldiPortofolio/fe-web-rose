@@ -1,0 +1,110 @@
+<!-- <op-navigation></op-navigation> -->
+
+<div class="card border-primary" >
+  <div class="card-body" >
+    <h5 class="card-title">List Account</h5>
+    <div>
+      <!--  SEARCH -->
+      <form style="padding: 15px 15px 15px 15px;">
+        <div class="form-group" >
+          <div class="row">
+            <div class="col">
+              <label for="to">Filter by</label>
+              <select class="form-control" name="filter" [(ngModel)]="request.filter_by">
+                <option value="">-All-</option>
+                <option *ngFor="let filter_by of filter" [value]="filter_by.code" [selected]="filter_by.code == request.filter_by">
+                  {{filter_by.name}}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="to">Action</label>
+              <select class="form-control" name="filter" [(ngModel)]="request.filter_action">
+                <option value="">-All-</option>
+                <option *ngFor="let filter_action of filterAction" [value]="filter_action.code" [selected]="filter_action.code == request.filter_action">
+                  {{filter_action.name}}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="to">Merchant type</label>
+              <select class="form-control" name="filter" [(ngModel)]="request.filter_mtype">
+                <option value="">-All-</option>
+                <option *ngFor="let filter_mtype of filterMtype" [value]="filter_mtype.code" [selected]="filter_mtype.code == request.filter_mtype">
+                  {{filter_mtype.name}}
+                </option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="from">Search</label>
+              <input type="text" class="form-control form-half" id="inputSearch"
+                name="search" autofocus [(ngModel)]='request.search'
+                placeholder="Input type" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="padding-top: 5px;">
+              <input type="text" class="form-control form-half" id="inputKeywods" name="keyword" autofocus
+                [(ngModel)]='request.keyword' placeholder="Input keyword" />
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">Search
+          <i class="fa fa-search fa-lg"></i>
+        </button>
+        <button type="submit" class="btn btn-outline-danger btn-sm" (click)="clearSelected()">Reset
+          <i class="fa fa-refresh fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <div class="table" style="height:200px;">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <!-- <th>Action</th> -->
+              <th width="7%">Merchant Group</th>
+              <th width="7%">Merchant Type</th>
+              <th width="15%">Merchant Name</th>
+              <th width="10%">Merchant ID</th>
+              <th width="10%">MPAN</th>
+              <th width="17%">Email</th>
+              <th width="8%">Category</th>
+              <th width="13%">Nomor Hp</th>
+              <th width="13%">Action</th>
+            </tr>
+          </thead>
+          <tbody height="360px;">
+            <tr *ngFor="let account of listAccount ">
+              <td width="7%">{{account.merchant_group_name}}</td>
+              <td width="7%">
+                <span *ngIf="account.merchant_type === '8079'">UMKM</span>
+                <span *ngIf="account.merchant_type === '8080'">Modern</span>
+                <span *ngIf="account.merchant_type === '8081'">eCommerce</span>      
+              </td>
+              <td width="15%">{{account.merchant_name}}</td>
+              <td width="10%">{{account.merchant_outlet_id}}</td>
+              <td width="10%">{{account.mpan}}</td>
+              <td width="17%">{{account.email}}</td>
+              <td width="8%">{{account.portal_category}}</td>
+              <td width="13%">{{account.store_phone_number}}</td>
+              <td width="13%">
+                <button *ngIf="account.portal_status === 0" (click)="openActivation(account)" type="button" class="btn btn-outline-primary btn-sm">Activation</button>
+                <button *ngIf="account.portal_status === 1" type="button" class="btn btn-outline-danger btn-sm" (click)="reset(account)">Reset</button> &nbsp;
+                <button *ngIf="account.portal_status === 1" type="button" class="btn btn-outline-dark btn-sm" (click)="deactivate(account)">Deactivate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-body">
+    <ngb-pagination size="md" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

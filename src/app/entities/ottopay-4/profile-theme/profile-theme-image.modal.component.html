@@ -1,0 +1,23 @@
+<div class="modal-body">
+  <div style="height:550px; padding-top: 15px">
+    <div class="card border-black" style="height: 530px">
+      <div class="card-body">
+  
+        <div class="row scrollable-img">
+  
+          <div *ngFor="let image of imageManagementList" class="card-columns mx-auto d-flex justify-content-center mb-3">
+            <div class="card bg-light pointer" (click)="clickImage(image)" style="width: 232px">
+              <img src="{{image.url}}" class="card-img-top" alt="Card image cap" style="width:232px; height:150px">
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <ngb-pagination size="md" [collectionSize]="totalData" [(page)]="currPage" [pageSize]="totalRecord" [maxSize]="totalRecord"
+    (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+
+</div>

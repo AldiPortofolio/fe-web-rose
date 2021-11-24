@@ -1,0 +1,91 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Loan Product Maintenance</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <!-- <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Product ID</label>
+            <input type="number" class="form-control" id="inputProductID" [(ngModel)]='searchTerm.id'
+            name="searchID" placeholder="Enter Product ID">
+          </div> -->
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Bank</label>
+            <select [(ngModel)]="searchTerm.bankCode" [ngModelOptions]="{standalone: true}" class="form-control" style="width:99%">
+              <option value="">- Pilih -</option>
+              <option *ngFor="let bank of listBank" [value]="bank.code">{{bank.fullName}}</option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Product Code</label>
+            <input type="text" class="form-control" id="inputStoreName" [ngModelOptions]="{standalone: true}" [(ngModel)]='searchTerm.loanProductCode' name="searchCode"
+              placeholder="Enter Product Code">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="institutionIdInput">Product Name</label>
+            <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" id="inputMidBank" [(ngModel)]='searchTerm.loanProductName' name="searchName"
+              placeholder="Enter Product Name">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="role">Status</label>
+            <select [(ngModel)]="searchTerm.status" [ngModelOptions]="{standalone: true}" class="form-control" style="width:99%">
+              <option value="">- Pilih -</option>
+              <option *ngFor="let status of statuses" [value]="status.code">{{status.name}}</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+    <div style="padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Bank Code</th>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Product Code</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Admin Fee Type</th>
+            <th scope="col">Admin Fee Value</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Updated At</th>
+            <th scope="col">Updated By</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loanProduct of loanProductList">
+            <td><button type="button" (click)="open('edit', loanProduct)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{loanProduct.bankCode}}</td>
+            <td>{{loanProduct.bankName}}</td>
+            <td>{{loanProduct.loanProductCode}}</td>
+            <td>{{loanProduct.loanProductName}}</td>
+            <td>{{loanProduct.adminFeeType}}</td>
+            <td>{{loanProduct.adminFeeValue}}</td>
+            <td>{{loanProduct.description}}</td>
+            <td *ngIf="loanProduct.status === 'y'">active</td>
+            <td *ngIf="loanProduct.status === 'n'">inactive</td>
+            <td>{{loanProduct.createdAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+            <td>{{loanProduct.createdBy}}</td>
+            <td>{{loanProduct.updatedAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+            <td>{{loanProduct.updatedBy}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+      [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

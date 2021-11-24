@@ -1,0 +1,56 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  
+</div>
+<div class="modal-body">
+    <table class="table table-sm table-striped">
+        <tr>
+            <th></th>
+            <th>Bank Name</th>
+            <th>Account Name</th>
+            <th>Bank Code</th>
+            <th>Account Number</th>
+        </tr>
+        <tr>
+            <td>Data Input</td>
+            <td>{{merchantBankAccount.shortName}}</td>
+            <td>{{merchantBankAccount.accountName}}</td>
+            <td>{{merchantBankAccount.bankCode}}</td>
+            <td>{{merchantBankAccount.accountNumber}}</td>
+            
+        </tr>
+        <tr>
+            <td>Data Bank</td>
+            <td>{{resValidation.accountBankName}}</td>
+            <td>{{resValidation.accountName}}</td>
+            <td>{{resValidation.bankCode}}</td>
+            <td>{{resValidation.accountNo}}</td>
+        </tr>
+        <tr>
+            <td>Owner Name</td>   
+            <td></td>
+            <td>{{resValidation.ownerFirstName}} {{resValidation.ownerLastName}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Validation</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{validationAccount}}</td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <div *ngIf="statusRec!=='View'">
+        <button type="button" class="btn btn-outline-success" (click)="approve()">Approve
+            <i class="fa fa-check"></i>
+        </button>
+        <button type="button" class="btn btn-outline-danger" (click)="reject()">Reject
+            <i class="fa fa-close"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+            <i class="fa fa-times fa-lg"></i>
+        </button>
+    </div>
+</div>

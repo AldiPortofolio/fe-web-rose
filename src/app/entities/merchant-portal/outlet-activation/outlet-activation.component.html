@@ -1,0 +1,67 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">List Merchant Outlet</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="lookupNameInput">Outlet Name</label>
+            <input type="text" class="form-control" id="lookupNameInput" [(ngModel)]='searchTerm.outlet_name'
+              name="searchName" placeholder="Enter Name">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="lookupGroupInput">Group Name</label>
+            <input type="text" class="form-control" id="lookupGroupInput" [(ngModel)]='searchTerm.group_name'
+              name="searchGroup" placeholder="Enter Group Name">
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="submit" (click)="onFilterMerchant()" class="btn mr-2 btn-outline-success btn-sm">Search
+            <i class="fa fa-search fa-lg"></i>
+          </button>
+          <button type="button" (click)="resetFilterMerchant()" class="btn btn-outline-danger btn-sm">Reset
+            <i class="fa fa-refresh fa-lg"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div style="padding: 15px 15px 15px 15px; ">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Outlet Name</th>
+              <th scope="col">Group Name</th>
+              <th scope="col">Merchant PAN</th>
+              <th scope="col">MID</th>
+              <th scope="col">Terminal ID</th>
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let merchant of merchantList; let i=index">
+              <td>{{merchant.outlet_name}}</td>
+              <td>{{merchant.merchant_group_name}}</td>
+              <td>{{merchant.mpan}}</td>
+              <td>{{merchant.merchant_outlet_id}}</td>
+              <td>{{merchant.terminal_id}}</td>
+              <td>{{merchant.email}}</td>
+              <td>{{merchant.portal_status == 1 ?'Actived': 'Not Actived'}}</td>
+              <td>
+                <button *ngIf="merchant.portal_status === 0" (click)="openActivation(merchant)" type="button"
+                  class="btn btn-outline-primary btn-sm">Activation</button>
+                <button *ngIf="merchant.portal_status === 1" type="button" class="btn btn-outline-danger btn-sm"
+                  (click)="reset(account)">Reset</button> &nbsp;
+                <button *ngIf="merchant.portal_status === 1" type="button" class="btn btn-outline-dark btn-sm"
+                  (click)="deactivate(account)">Deactivate</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <ngb-pagination size="sm" [collectionSize]="totalDataMerchant" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPageMerchant()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

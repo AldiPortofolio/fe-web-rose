@@ -1,0 +1,54 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h2 class="card-title">Version App</h2>
+        <div class="container marketing" style="height:400px; padding: 15px 15px 15px 15px; ">
+            <div class="row">
+                <div class="col-md-3">
+                    <h4 class="text-center">Ottomart</h4>
+                    <label for="versionOttomart">Version:</label>
+                    <div class="input-group">
+                        
+                        <input type="text" class="form-control" id="versionOttomart" 
+                         name="searchCode"
+                         [(ngModel)]="ottomart"
+                            placeholder="Enter Version Ottomart"/>
+                        <button type="button" (click)="updateOttomart()" class="btn btn-outline-danger btn-sm">Update <i class="fa fa-refresh fa-lg"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">SFA</h4>
+                    <label for="versionSFA">Version:</label>
+                    <div class="input-group">
+                
+                        <input type="text" class="form-control" id="versionSFA" name="searchCode" [(ngModel)]="sfa"
+                            placeholder="Enter Version SFA" />
+                        <button type="button" (click)="updateSFA()" class="btn btn-outline-danger btn-sm">Update <i class="fa fa-refresh fa-lg"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">Indomarco</h4>
+                    <label for="versionIndomarco">Version:</label>
+                    <div class="input-group">
+                
+                        <input type="text" class="form-control" id="versionIndomarco" name="searchCode" [(ngModel)]="indomarco"
+                            placeholder="Enter Version Indomarco" />
+                        <button type="button" (click)="updateIndomarco()" class="btn btn-outline-danger btn-sm">Update <i class="fa fa-refresh fa-lg"></i></button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="text-center">NFC</h4>
+                    <label for="versionNFC">Version:</label>
+                    <div class="input-group">
+                
+                        <input type="text" class="form-control" id="versionNFC" name="searchCode" [(ngModel)]="nfc"
+                            placeholder="Enter Version NFC" />
+                        <button type="button" (click)="updateNFC()" class="btn btn-outline-danger btn-sm">Update <i class="fa fa-refresh fa-lg"></i></button>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+
+</div>

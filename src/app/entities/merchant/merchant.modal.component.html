@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        <span class="badge badge-light" style="color:cornflowerblue"> Aktivasi Merchant Portal </span> </h4>
+</div>
+<div class="modal-body">
+    <table class="table table-sm  table-striped">
+        <tr>
+            <td>Merchant Name</td>
+            <td><input type="text" size="80%" maxlength="50" [(ngModel)]="merchant.store_name" disabled /></td>
+        </tr>
+        <tr>
+            <td>Merchant ID</td>
+            <td><input type="text" size="80%" maxlength="50" [(ngModel)]="merchant.mid" disabled /></td>
+        </tr>
+        <tr>
+            <td>MPAN</td>
+            <td><input type="text" size="80%" maxlength="50" [(ngModel)]="merchant.mpan" disabled /></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>
+                <input type="email" size="80%" maxlength="50" [(ngModel)]="merchant.email"
+                    placeholder="type your email address" />
+                <br>
+                <div *ngIf="submitted && (merchant.email == '' || merchant.email == null || merchant.email == '-')">
+                    <div style="color: red"> *Field is required</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="email()">Send email activation
+        <i class="fa fa-envelope fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)="closeForm()">Close
+        <i class="fa fa-times fa-lg"></i>
+    </button>
+</div>

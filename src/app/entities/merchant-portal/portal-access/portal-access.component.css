@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+thead th {
+    height: 50px;
+}
+tbody {
+    overflow-y: auto;
+}
+tbody td, thead th {
+    float: left;
+}

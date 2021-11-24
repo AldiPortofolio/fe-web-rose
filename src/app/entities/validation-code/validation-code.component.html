@@ -1,0 +1,84 @@
+<div class="card border-primary">
+    <div class="card-body">
+        <h5 class="card-title">Validation Code</h5>
+        <div>
+            <!-- SEARCH -->
+            <form>
+                <div class="row">
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="issuerNameInput">Code</label>
+                        <input type="text" class="form-control" id="inputProductCode" [(ngModel)]='searchTerm.validationCode'
+                            name="searchCode" placeholder="Enter Code">
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="institutionIdInput">App ID</label>
+                        <select class="form-control" [(ngModel)]="searchTerm.appId" [ngModelOptions]="{standalone: true}">
+                            
+                            <option value="">- Pilih -</option>
+                            <option *ngFor="let app of listAppID" [value]="app.code" [selected]="app.code == searchTerm.appId">
+                                {{app.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3 mt-2">
+                        <label for="institutionIdInput">User Category</label>
+                        <select class="form-control" [(ngModel)]="searchTerm.userCategoryCode" [ngModelOptions]="{standalone: true}">
+                    
+                            <option value="">- Pilih -</option>
+                            <option *ngFor="let category of userCategoryList" [value]="category.code" [selected]="category.code == searchTerm.userCategoryCode">
+                                {{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i class="fa fa-search fa-lg"></i></button>
+                <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+                        class="fa fa-refresh fa-lg"></i></button>
+                <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+                    <i class="fa fa-plus-circle fa-lg"></i>
+                </button>
+            </form>
+        </div>
+        <div style="height:400px; padding: 15px 15px 15px 15px; ">
+            <table class="table table-sm table-hover table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Code</th>
+                        <th scope="col">App Name</th>
+                        <th scope="col">User Category</th>
+                        <th scope="col">Valid From</th>
+                        <th scope="col">Valid To</th>
+                        <th scope="col">Updated At</th>
+                        <th scope="col">Updated By</th>
+                        <!-- <th scope="col">Sequence</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of validationCodeList">
+                        <td>
+                            <button type="button" (click)="openDetail(data)" class="btn btn-outline-warning btn-sm">
+                                <i class="fa fa-location-arrow"></i>
+                            </button>
+                        </td>
+                        <td><button type="button" (click)="open('edit', data)" class="btn btn-outline-success btn-sm">
+                                <i class="fa fa-list"></i>
+                            </button>
+                        </td>
+                        <td>{{data.validationCode}}</td>
+                        <td>{{data.appName}}</td>
+                        <td>{{data.userCategoryCode}}</td>
+                        <td>{{data.validFrom | date: 'dd-MM-yyyy'}}</td>
+                        <td>{{data.validTo | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{data.updatedAt | date: 'dd-MM-yyyy' }}</td>
+                        <td>{{data.updatedBy}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+            [boundaryLinks]="true"></ngb-pagination>
+    </div>
+</div>

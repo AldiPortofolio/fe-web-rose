@@ -1,0 +1,43 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Article</h5>
+    <div>
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+          </div>
+        </div>
+        <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" (click)="resetFilter()" class="btn mr-1 btn-outline-danger btn-sm">Reset <i
+            class="fa fa-refresh fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">User Category</th>
+            <th scope="col">Level Merchant</th>
+            <th scope="col">Image Name</th>
+            <th scope="col">Image Link</th>
+            <th scope="col">Sequence</th>
+            <th scope="col">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

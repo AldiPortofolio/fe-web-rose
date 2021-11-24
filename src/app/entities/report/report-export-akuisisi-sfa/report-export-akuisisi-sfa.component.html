@@ -1,0 +1,78 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Report Export Akuisisi Sfa</h5>
+    <div>
+      <!--  SEARCH -->
+      <form>
+        <div class="form-group">
+          <div class="row">
+            <div class="col">
+              <label for="from">Process Date From</label>
+              <input type="text" class="form-control form-half" ngbDatepicker #dStart="ngbDatepicker"
+                [(ngModel)]="dateStartMdl" name="dateStart" />
+              <button (click)="dStart.toggle()">
+                <i class="fa fa-calendar fa-lg"></i>
+              </button>
+            </div>
+            <div class="col">
+              <label for="to">To</label>
+              <input type="text" class="form-control form-half" ngbDatepicker #dEnd="ngbDatepicker"
+                [(ngModel)]="dateEndMdl" name="dateEnd" />
+              <button (click)="dEnd.toggle()">
+                <i class="fa fa-calendar fa-lg"></i>
+              </button>
+            </div>
+            <div class="col" style="padding: 22px 0">
+              <button type="button" class="btn btn-outline-primary" (click)="onFilter()">
+                Search
+              </button>
+              <br>
+              <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">
+                <i class="fa fa-refresh fa-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <div style="min-height:400px; padding: 15px 15px 15px 15px; ">
+      <div class="table-responsive">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Request User</th>
+              <th scope="col">Filter</th>
+              <th scope="col">File Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Download File</th>
+              <th scope="col">Download File Error</th>
+              <th scope="col">Request Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reportList ">
+              <td>{{report.user}}</td>
+              <td>{{report.filter}}</td>
+              <td>{{report.filePath}}</td>
+              <td>{{report.status}}</td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm">
+                  <i class="fa fa-download fa-md" (click)="downloadFile(report.filePath)"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm">
+                  <i class="fa fa-download fa-md" (click)="downloadFile(report.filePathErr)"></i>
+                </button>
+              </td>
+              <td>{{report.transactionDate | date:'dd - MMMM - yyyy, HH:mm:ss':'GMT'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord"
+        (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+  </div>
+</div>

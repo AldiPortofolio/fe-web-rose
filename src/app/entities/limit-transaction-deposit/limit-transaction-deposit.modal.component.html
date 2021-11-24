@@ -1,0 +1,61 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+  <h4 class="modal-title">
+    <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+  </h4>
+</div>
+<div class="modal-body">
+  <table class="table table-sm table-striped">
+    <tr>
+      <th style="width: 30%">
+        <span class="badge badge-pill badge-primary">{{id}}</span>
+      </th>
+      <th style="width:70%">
+        <button type="button" class="btn btn-outline-primary" style="color:green">
+          Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+          <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+        </button>
+      </th>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <!-- <td><input type="text" size="60%" maxlength="250" [(ngModel)]="limitTransaction.userCategoryId" /></td> -->
+      <td>
+        <select [(ngModel)]="limitTransaction.category" class="form-control" style="width:99%">
+          <option value="">- Pilih -</option>
+          <option *ngFor="let category of listUserCategory" [value]="category.code"
+            [selected]="category.code == limitTransaction.category">{{category.code}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Member Type</td>
+      <td>
+        <select [(ngModel)]="limitTransaction.memberType" class="form-control" style="width:99%">
+          <option value="">- Pilih -</option>
+          <option *ngFor="let merchant of listLevelMerchant" [value]="merchant.name"
+            [selected]="merchant.name == limitTransaction.memberType">{{merchant.name}}
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Min Limit</td>
+      <td><input type="number" style="width:99%" maxlength="250" [(ngModel)]="limitTransaction.minLimit" /></td>
+    </tr>
+    <tr>
+      <td>Max Limit</td>
+      <td><input type="number" style="width:99%" maxlength="250" [(ngModel)]="limitTransaction.maxLimit" /></td>
+    </tr>
+  </table>
+</div>
+<div class="modal-footer">
+  <div *ngIf="statusRec!=='View'">
+    <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </div>
+</div>

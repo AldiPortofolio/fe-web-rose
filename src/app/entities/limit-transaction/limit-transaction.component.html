@@ -1,0 +1,80 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Master Limitation</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="form-group"></div>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="productTypeInput">Product Type</label>
+            <input type="text" class="form-control" id="productTypeInput" [(ngModel)]='searchTerm.productType'
+              name="searchProductType" placeholder="Enter Product type">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="productNameInput">Product Name</label>
+            <input type="text" class="form-control" id="productNameInput" [(ngModel)]='searchTerm.productName'
+              name="searchProductName" placeholder="Enter Product Name">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="byGroupInput">By Group</label>
+            <input type="text" class="form-control" id="byGroupInput" [(ngModel)]='searchTerm.byGroupFilter'
+              name="seachByGroup" placeholder="Enter By Group">
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="byTimeInput">By Time</label>
+            <input type="text" class="form-control" id="byTimeInput" [(ngModel)]='searchTerm.byTime' name="searchByTime"
+              placeholder="Enter By Time">
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="submit" (click)="onFilter()" class="btn mr-2 btn-outline-success btn-sm">Search <i
+              class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Add
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Merchant Group</th>
+            <th scope="col">Product Type</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Limit Frequency Min</th>
+            <th scope="col">Limit Frequency Max</th>
+            <th scope="col">Limit Amt Min</th>
+            <th scope="col">Limit Amt Max</th>
+            <th scope="col">By Time</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let limitTransaction of limitTransactionList">
+            <td><button type="button" (click)="open('edit', limitTransaction)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+              <button type="button" (click)="delete(limitTransaction)" class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-trash"></i>
+              </button></td>
+            <td>{{limitTransaction.productType}}</td>
+            <td>{{limitTransaction.productName}}</td>
+            <td>{{limitTransaction.limitFreqMin}}</td>
+            <td>{{limitTransaction.limitFreq}}</td>
+            <td>{{limitTransaction.limitAmtMin}}</td>
+            <td>{{limitTransaction.limitAmt}}</td>
+            <td>{{limitTransaction.byTime}}</td>
+            <td>{{limitTransaction.status == 1 ?'Approved': 'Not Approved'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

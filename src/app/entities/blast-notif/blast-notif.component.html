@@ -1,0 +1,21 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Send Notification</h5>
+    
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <form>
+        <div class="row">
+          <label for="issuerNameInput">Title</label>
+          <input type="text" class="form-control" id="inputProductCode" [(ngModel)]='searchTerm.Title' name="searchCode"
+            placeholder="Enter Title">
+        </div>
+        <div class="row">
+          <label for="institutionIdInput">Desc</label>
+          <textarea class="form-control" name="desc" id="" cols="30" rows="10"  [(ngModel)]='searchTerm.desc' placeholder="Enter Description"></textarea>
+        </div>
+        <button type="submit" (click)="send()" class="btn mr-1 btn-outline-success btn-sm">Send <i class="fa fa-paper-plane fa-lg"></i></button>
+        <button type="submit" (click)="resetFilter()" class="btn mr-1 btn-outline-danger btn-sm">Reset <i class="fa fa-refresh fa-lg"></i></button>
+      </form>
+    </div>
+  </div>
+</div>

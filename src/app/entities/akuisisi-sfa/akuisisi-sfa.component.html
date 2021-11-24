@@ -1,0 +1,171 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+
+<div class="card border-primary">
+    <div class="card-body">
+        <ngb-tabset>
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div>
+                        <strong> DATA AKUISISI SFA SUCCESS </strong>
+                    </div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <h5 class="card-title">List Data Akuisi SFA Success</h5>
+                    <div>
+                        <!-- SEARCH -->
+                        <form>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="exampleInputEmail1">Nama / No Telephone / MID</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            autofocus [(ngModel)]='searchTerm.key' name="searchName" placeholder="Enter Name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="from">Date From</label>
+                                        <input type="text" class="form-control form-half" ngbDatepicker #dStart="ngbDatepicker" [(ngModel)]="dateStartMdl"
+                                            name="dateStart" />
+                                        <button (click)="dStart.toggle()">
+                                            <i class="fa fa-calendar fa-lg"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <label for="to">To</label>
+                                        <input type="text" class="form-control form-half" ngbDatepicker #dEnd="ngbDatepicker" [(ngModel)]="dateEndMdl"
+                                            name="dateEnd" />
+                                        <button (click)="dEnd.toggle()">
+                                            <i class="fa fa-calendar fa-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">Search <i class="fa fa-search fa-lg"></i></button>
+                            <button (click)="export()" type="button" style="margin-left: 3px;"  class="btn btn-outline-info btn-sm">Export
+                                <i class="fa fa-download fa-md"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+                        <table class="table table-sm table-hover table-striped mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Store Name</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Mid</th>
+                                    <th scope="col">Merchant PAN</th>
+                                    <th scope="col">Akuisisi Status</th>
+                                    <th scope="col">Tanggal Akuisisi</th>
+                                    <th scope="col">Status FDS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of akuisisiSfaList">
+                                    <td>{{data.store_name}}</td>
+                                    <td>{{data.store_phone_number}}</td>
+                                    <td>{{data.merchant_outlet_id}}</td>
+                                    <td>{{data.merchant_pan}}</td>
+                                    <div [ngSwitch]="data.status">
+                                        <td *ngSwitchCase="'y'">Activated</td>
+                                        <td *ngSwitchCase="'n'">Not Activated</td>
+                                    </div>
+                                    <td>{{data.updated_at | date:'dd - MM - yyyy':'GMT'}}</td>
+                                    <td>{{data.description}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+                            [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+        
+            <ngb-tab>
+                <ng-template ngbTabTitle>
+                    <div>
+                        <strong> DATA AKUISISI SFA FAILED </strong>
+                    </div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <h5 class="card-title">List Data Akuisi SFA Failed</h5>
+                    <div>
+                        <!-- SEARCH -->
+                        <form>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="exampleInputEmail1">Nama / No Telephone / MID</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                            autofocus [(ngModel)]='searchTermFailed.key' name="searchName" placeholder="Enter Name">
+                                    </div>
+                                    <div class="col">
+                                        <label for="from">Date From</label>
+                                        <input type="text" class="form-control form-half" ngbDatepicker #dStart="ngbDatepicker"
+                                            [(ngModel)]="dateStartMdlFailed" name="dateStart" />
+                                        <button (click)="dStart.toggle()">
+                                            <i class="fa fa-calendar fa-lg"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <label for="to">To</label>
+                                        <input type="text" class="form-control form-half" ngbDatepicker #dEnd="ngbDatepicker"
+                                            [(ngModel)]="dateEndMdlFailed" name="dateEnd" />
+                                        <button (click)="dEnd.toggle()">
+                                            <i class="fa fa-calendar fa-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilterFailed()">Search <i
+                                    class="fa fa-search fa-lg"></i></button>
+                            <!-- <button (click)="export()" type="button" style="margin-left: 3px;"
+                                class="btn btn-outline-info btn-sm">Export
+                                <i class="fa fa-download fa-md"></i>
+                            </button> -->
+                        </form>
+                    </div>
+                    <div style="height:1200px; padding: 15px 15px 15px 15px; ">
+                        <table class="table table-sm table-hover table-striped mt-2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Store Name</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Mid</th>
+                                    <th scope="col">Merchant PAN</th>
+                                    <th scope="col">Tanggal Akuisisi</th>
+                                    <th scope="col">Request Body</th>
+                                    <th scope="col">Status FDS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of akuisisiSfaFailedList">
+                                    <td>{{data.store_name}}</td>
+                                    <td>{{data.store_phone_number}}</td>
+                                    <td>{{data.merchant_outlet_id}}</td>
+                                    <td>{{data.merchant_pan}}</td>
+                                    <td>{{data.updated_at | date:'dd - MM - yyyy':'GMT'}}</td>
+                                    <td>
+                                        <textarea [disabled]="true" name="" id="" cols="30" rows="5">{{data.request}}</textarea>
+                                    </td>
+                                    <td>{{data.response}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <ngb-pagination size="sm" [collectionSize]="totalDataFailed" [(page)]="currPageFailed" [maxSize]="totalRecordFailed"
+                            (pageChange)="loadPageFailed()" [boundaryLinks]="true"></ngb-pagination>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>

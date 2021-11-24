@@ -1,0 +1,107 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Limit Transaction</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="categoryCode">User Category Code</label>
+            <!-- <input type="text" class="form-control" id="userCategoryId" [(ngModel)]='searchTerm.userCategoryId'
+              name="searchCode" placeholder="Enter User Category Code"> -->
+            <select type="text" class="form-control" id="userCategoryId" [(ngModel)]='searchTerm.userCategoryId' name="searchCode">
+              <option value="">- Pilih User Category -</option>
+              <option *ngFor="let userCategory of userCategoryList" [value]="userCategory.code">{{userCategory.code}} - {{userCategory.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="levelMerchant">Level Merchant</label>
+            <!-- <input type="text" class="form-control" id="levelMerchant" [(ngModel)]='searchTerm.levelMerchant'
+              name="searchName" placeholder="Enter Level Merchant"> -->
+            <select type="text" class="form-control" id="levelMerchant" [(ngModel)]='searchTerm.levelMerchant' name="searchLevelMerchant">
+              <option *ngFor="let levelMerchant of levelMerchantList" [value]="levelMerchant.code">{{levelMerchant.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="featureProduct">Feature Product</label>
+            <!-- <input type="text" class="form-control" id="featureProduct" [(ngModel)]='searchTerm.featureProduct' name="searchCode"
+              placeholder="Enter Feature Product"> -->
+            <select type="text" class="form-control" id="featureProduct" [(ngModel)]='searchTerm.featureProduct' name="searchFeatureProduct">
+              <option value="">- Pilih Feature Product -</option>
+              <option *ngFor="let feature of featureList" [value]="feature.code">{{feature.name}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="timeFrame">Time Frame</label>
+            <!-- <input type="text" class="form-control" id="timeFrame" [(ngModel)]='searchTerm.timeFrame' name="searchName"
+              placeholder="Enter Time Frame"> -->
+            <select type="text" class="form-control" id="timeFrame" [(ngModel)]='searchTerm.timeFrame' name="searchTimeFrame">
+              <option *ngFor="let timeFrame of listTimeFrame" [value]="timeFrame.code">{{timeFrame.name}}
+              </option>
+            </select>
+          </div>
+          <!-- <div class="col-md-3 mb-3 mt-2">
+            <label for="role">Category</label>
+            <input type="text" class="form-control" id="category" [(ngModel)]='searchTerm.category'
+              name="searchTitle" placeholder="Enter Category">
+          </div> -->
+        </div>
+          <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+              class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </button>
+      </form>
+    </div>
+    <div style="height:500px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">User Category Code</th>
+            <th scope="col">Level Merchant</th>
+            <th scope="col">Feature Product</th>
+            <th scope="col">Limit Freq</th>
+            <th scope="col">Min Limit Amount</th>
+            <th scope="col">Max Limit Amount</th>
+            <th scope="col">Time Frame</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Created By</th>
+            <th scope="col">Updated At</th>
+            <th scope="col">Updated By</th>
+            <!-- <th scope="col">Limit Ppob Amount</th>
+            <th scope="col">Limit Ppob Freq</th>
+            <th scope="col">Category</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let limitTransaction of limitTransactionList">
+            <td><button type="button" (click)="open('edit', limitTransaction)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{limitTransaction.userCategoryId}}</td>
+            <td>{{limitTransaction.levelMerchant}}</td>
+            <td>{{limitTransaction.featureProduct}}</td>
+            <td>{{limitTransaction.limitFreq}}</td>
+            <td>{{limitTransaction.minLimitAmount | currency : 'IDR' : '' : '.0'}}</td>
+            <td>{{limitTransaction.limitAmount | currency : 'IDR' : '' : '.0' }}</td>
+            <td>{{limitTransaction.timeFrame}}</td>
+            <td>{{limitTransaction.createdAt | date:'dd - MMM - yyyy':'GMT'}}</td>
+            <td>{{limitTransaction.createdBy}}</td>
+            <td>{{limitTransaction.updatedAt | date:'dd - MMM - yyyy':'GMT'}}</td>
+            <td>{{limitTransaction.updatedBy}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

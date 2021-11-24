@@ -1,0 +1,85 @@
+<div class="card border-primary" style="overflow: scroll;">
+  <div class="card-body">
+    <h5 class="card-title">Acquititions List</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col">
+            <label for="searchName">Name</label>
+            <input type="text" class="form-control" id="searchName" aria-describedby="emailHelp" autofocus
+              [(ngModel)]='searchTerm.name' name="searchName" placeholder="Enter Name">
+          </div>
+          <div class="col">
+            <label for="to">Merchant Group</label>
+            <select class="form-control" name="filter" [(ngModel)]="searchTerm.merchantGroup">
+              <option value="">-All-</option>
+              <option *ngFor="let merchantGroup of lookupMerchantGroup" [value]="merchantGroup.id"
+                [selected]="merchantGroup.id == searchTerm.merchantGroup">
+                {{merchantGroup.id}} - {{merchantGroup.merchantGroupName}}
+              </option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="to">Merchant Category</label>
+            <select class="form-control" name="filter" [(ngModel)]="searchTerm.merchantCategory">
+              <option value="">-All-</option>
+              <option *ngFor="let merchantCategory of userCategoryList" [value]="merchantCategory.name"
+                [selected]="merchantCategory.name == searchTerm.merchantCategory">
+                {{merchantCategory.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()" style="margin-top: 7px; margin-right: 3px;">Search <i
+            class="fa fa-search fa-lg"></i></button>
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)" style="margin-top: 7px;">Addnew
+          <i class="fa fa-plus-circle fa-lg"></i>
+        </button>
+      </form>
+    </div>
+
+    <div style="height:auto; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Merchant Type</th>
+            <th scope="col">Merchant Group</th>
+            <th scope="col">Merchant Category</th>
+            <th scope="col">Sales Retail</th>
+            <th scope="col">Business Type</th>
+            <th scope="col">Sequence</th>
+            <th scope="col">Show in App</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let acquitition of acquititions">
+            <td>{{acquitition.id}}</td>
+            <td>{{acquitition.name}}</td>
+            <td>{{acquitition.merchantType}}</td>
+            <td>{{acquitition.merchantGroupId}}</td>
+            <td>{{acquitition.merchantCategory}}</td>
+            <td>{{acquitition.salesRetailsArr}}</td>
+            <td>{{acquitition.businessTypeArr}}</td>
+            <td>{{acquitition.sequence}}</td>
+            <td>{{acquitition.showInApp}}</td>
+            <td>
+              <button type="button" (click)="open('edit', acquitition)" class="btn btn-outline-success btn-sm" style="margin-right: 3px;">
+                <i class="fa fa-edit fa-sm"></i>
+              </button>
+              <button type="button" (click)="remove(acquitition)" class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-trash fa-sm"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">User Category</h5>
+    <div>
+      <!-- SEARCH -->
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="issuerNameInput">Code</label>
+            <input type="text" class="form-control" id="inputUserCategoryCode" [(ngModel)]='searchTerm.code'
+              name="searchCode" placeholder="Enter User Category Code">
+          </div>
+          <div class="col-md-3 mb-3 mt-2">
+            <label for="institutionIdInput">Name</label>
+            <input type="text" class="form-control" id="inputUserCategoryName" [(ngModel)]='searchTerm.name'
+              name="searchName" placeholder="Enter User Category Name">
+          </div>
+          <!-- <div class="col-md-3 mb-3 mt-2">
+            <label for="role">Notes</label>
+            <input type="text" class="form-control" id="inputUserCategoryTitle" [(ngModel)]='searchTerm.title'
+              name="searchTitle" placeholder="Enter UserCategory Title">
+          </div> -->
+        </div>
+          <button type="submit" (click)="onFilter()" class="btn mr-1 btn-outline-success btn-sm">Search <i
+              class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn  mr-1 btn-outline-danger btn-sm">Reset <i
+              class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew
+            <i class="fa fa-plus-circle fa-lg"></i>
+          </button>
+      </form>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <table class="table table-sm table-hover table-striped mt-2">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">App Name</th>
+            <th scope="col">Logo</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Sequence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let userCategory of userCategoryList">
+            <td><button type="button" (click)="open('edit', userCategory)" class="btn btn-outline-success btn-sm">
+                <i class="fa fa-list"></i>
+              </button>
+            </td>
+            <td>{{userCategory.code}}</td>
+            <td>{{userCategory.name}}</td>
+            <td>{{userCategory.appName}}</td>
+            <td><a href="{{userCategory.logo}}">{{userCategory.logo}}</a></td>
+            <td>{{userCategory.notes}}</td>
+            <td>{{userCategory.seq}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="currPage" [maxSize]="totalRecord"
+      (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+  </div>
+</div>

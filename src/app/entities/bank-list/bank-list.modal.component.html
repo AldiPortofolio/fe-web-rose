@@ -1,0 +1,64 @@
+<div class="modal-header" *ngIf="statusRec!=='View'">
+    <h4 class="modal-title">
+        <span class="badge badge-light" style="color:cornflowerblue">Add/Edit</span>
+    </h4>
+</div>
+<div class="modal-body">
+    <table class="table table-sm table-striped">
+        <tr>
+            <th style="width: 30%">
+                <span class="badge badge-pill badge-primary">{{bankList.id}}</span>
+            </th>
+            <th style="width:70%">
+                <button type="button" class="btn btn-outline-primary" style="color:green">
+                    Status <span class="badge badge-light" style="color:red">{{statusRec}}</span>
+                    <span class="badge badge-light" style="color:purple">{{viewMsg}}</span>
+                </button>
+            </th>
+        </tr>
+        <tr>
+            <td>Full Name</td>
+            <td><input type="text" size="60%" maxlength="250" [(ngModel)]="bankList.fullName" /></td>
+        </tr>
+        <tr>
+            <td>Short Name</td>
+            <td><input type="text" size="60%" maxlength="250" [(ngModel)]="bankList.shortName" /></td>
+        </tr>
+        <tr>
+            <td>Settlement Fee Config</td>
+            <td>
+                <select [(ngModel)]="bankList.settlementFeeConfig" class="form-control" [ngModelOptions]="{standalone: true}">
+                    <option value="">- Pilih Settlement Type -</option>
+                    <option *ngFor="let type of lookupType" [value]="type.val">
+                        {{type.descr}}
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Code</td>
+            <td><input type="text" size="60%" maxlength="250" [(ngModel)]="bankList.code" /></td>
+        </tr> 
+        <tr>
+            <td>Icon</td>
+            <td>
+                <img *ngIf="bankList.urlImage!==''" src="{{bankList.urlImage}}" style="width:232px; height:150px" class="mr-2">
+                <button type="button" class="btn btn-outline-dark btn-sm" (click)="openGallery()">Choose Icon</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Sequence</td>
+            <td><input type="number" size="60%" maxlength="250" [(ngModel)]="bankList.seq" /></td>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <div *ngIf="statusRec!=='View'">
+        <button type="button" class="btn btn-outline-danger" (click)="save()">Save
+            <i class="fa fa-save fa-lg"></i>
+        </button>
+        <button type="button" class="btn btn-outline-dark" (click)=closeForm()>close
+            <i class="fa fa-times fa-lg"></i>
+        </button>
+    </div>
+</div>

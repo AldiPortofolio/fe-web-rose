@@ -1,0 +1,61 @@
+export class MerchantSettlementConfig {
+    constructor(
+        public id?: number,
+        public settlementConfig?: string,
+        public settlementConfigName?: string,
+        public noRekeningToko?: string,
+        public namaBankTujuanSettlement?: string,
+        public namaPemilikRekening?: string,
+        public tipeRekening?: string,
+        public reportSettlementConfig?: string,
+        public reportSettlementConfig2?: string,
+        public reportSettlementConfigName?: string,
+        public settlementExecutionConfig?: string,
+        public settlementExecutionConfigName?: string,
+        public sendReportVia?: string,
+        public sendReportUrl?: string,
+        public processingConfiguration?: string,
+        public processingConfigurationName?: string,
+        public processingFee?: string,
+        public processingFeeValue?: number,
+        public rentalEdcFee?: number,
+        public mdr?: string,
+        public mdrEmoneyOnUs?: number,
+        public mdrEmoneyOffUs?: number,
+        public mdrDebitOnUs?: number,
+        public mdrDebitOffUs?: number,
+        public mdrCreditOnUs?: number,
+        public mdrCreditOffUs?: number,
+        public otherFee?: number,
+        public fmsFee?: number,
+        public status?: number,
+        public errCode?: string,
+        public errDesc?: string,
+        public email?: string,
+        public sftpHost?: string,
+        public sftpUser?: string,
+        public sftpPassword?: string,
+
+    ) { }
+}
+
+export class SettlementConfig {
+    constructor(
+        public id?: number,
+        public mid?: string,
+        public noRekeningToko?: string,
+        public namaBankTujuanSettlement?: string,
+        public namaPemilikRekening?: string,
+        public tipeRekening?: string,
+        public reportSettlementConfigName?: string,
+        public settlementExecutionConfigName?: string,
+        public rptSetConfName?: string,
+        public setExecConfName?: string,
+        public status?: number,
+        public email?: string,
+        public sftpHost?: string,
+        public sftpUser?: string,
+        public sftpPassword?: string,
+
+    ) { }
+}

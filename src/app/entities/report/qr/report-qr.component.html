@@ -1,0 +1,54 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Report Qr</h5>
+    <br>
+    <br>
+    <div>
+        <button type="submit" class="btn btn-outline-success btn-sm" (click)="onFilter()">
+          <i class="fa fa-refresh fa-lg"></i>
+        </button>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+      <div class="table-responsive">
+        <table class="table table-sm table-hover table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Request Date</th>
+              <th scope="col">File Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Requestor</th>
+              <th scope="col">Download File</th>
+              <th scope="col">Download File Success</th>
+              <th scope="col">Download File Error</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of reportList ">
+              <td>{{report.transactionDate | date:'dd - MMMM - yyyy, HH:mm:ss':'GMT'}}</td>
+              <td>{{report.filePath}}</td>
+              <td>{{report.status}}</td>
+              <td>{{report.user}}</td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm">
+                  <i class="fa fa-download fa-md" (click)="downloadFile(report.filePath)"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm">
+                  <i class="fa fa-download fa-md" (click)="downloadResultFile(report.filePathSuccess)"></i>
+                </button>
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-primary btn-sm">
+                  <i class="fa fa-download fa-md" (click)="downloadResultFile(report.filePathErr)"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord"
+        (pageChange)="loadPage()" [boundaryLinks]="true"></ngb-pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="card border-primary">
+  <div class="card-body">
+    <h5 class="card-title">Lookup Group - Lookup List</h5>
+    <!-- SEARCH -->
+    <div>
+      <form>
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="lookupCodeInput">Code</label>
+            <input type="text" class="form-control"
+                    id="lookupCodeInput"
+                    [(ngModel)]='searchTerm.code'
+                    name="searchCode"
+                    placeholder="Enter Code">
+          </div>  
+          <div class="col-md-3 mb-3">
+            <label for="lookupNameInput">Name</label>
+            <input type="text" class="form-control"
+                    id="lookupNameInput"
+                    [(ngModel)]='searchTerm.name'
+                    name="searchName"
+                    placeholder="Enter Name">
+          </div>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" (click)="onFilter()" class="btn mr-2 btn-outline-success btn-sm" >Search <i class="fa fa-search fa-lg"></i></button>
+          <button type="button" (click)="resetFilter()" class="btn btn-outline-danger btn-sm" >Reset <i class="fa fa-refresh fa-lg"></i></button>
+          <button type="button" class="btn btn-outline-primary btn-sm" (click)="open('addnew', null)">Addnew<i class="fa fa-plus-circle fa-lg"></i></button>
+        </div>
+        
+      </form>
+    </div>
+    <br>
+    <div class="btn-group" role="group">
+      
+    </div>
+    <br>
+    <h1>{{groupName | uppercase}}</h1>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-dark btn-sm" (click)="goBack()">
+          <i class="fa fa-arrow-left fa-lg"></i> 
+          Back
+      </button>
+    </div>
+    <div style="height:400px; padding: 15px 15px 15px 15px; ">
+        <table class="table table-sm table-hover table-striped" >
+          <thead>
+            <tr>
+              <th></th>
+              <th scope="col">Code</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Created At</th>
+              <th scope="col">Created By</th>
+              <th scope="col">Updated At</th>
+              <th scope="col">Updated By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let lookup of lookupList">
+              <td>
+                <button type="button"
+                  (click)="open('edit', lookup)"
+                    class="btn btn-outline-warning btn-sm">
+                      <i class="fa fa-list fa-lg"></i>
+                </button>
+              </td>
+              <td>{{lookup.code}}</td>
+              <td>{{lookup.name}}</td>
+              <td>{{lookup.descr}}</td>
+              <td>{{lookup.createdAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+              <td>{{lookup.createdBy}}</td>
+              <td>{{lookup.updatedAt | date:'dd-MMM-yyyy':'GMT'}}</td>
+              <td>{{lookup.updatedBy}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <!-- <ngb-pagination size="sm" 
+        [collectionSize]="totalData"
+        [(page)]="curPage" 
+        [maxSize]="totalRecord" 
+        (pageChange)="loadPage()"
+        [boundaryLinks]="true">
+    </ngb-pagination> -->
+    <ngb-pagination size="sm" [collectionSize]="totalData" [(page)]="curPage" [maxSize]="totalRecord" (pageChange)="loadPage()"
+      [boundaryLinks]="true"></ngb-pagination>
+  </div>
+  
+</div>
